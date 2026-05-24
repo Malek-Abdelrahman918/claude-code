@@ -1,13 +1,8 @@
 import type { Metadata } from "next";
-import { Outfit, Orbitron } from "next/font/google";
+import { Outfit } from "next/font/google";
 import "./globals.css";
 
 const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
-const orbitron = Orbitron({
-  subsets: ["latin"],
-  weight: ["400", "500"],
-  variable: "--font-orbitron",
-});
 
 export const metadata: Metadata = {
   title: "LeadSync — AI automation for businesses that ship",
@@ -17,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${outfit.variable} ${orbitron.variable}`}>
+    <html lang="en" className={outfit.variable}>
       <body>{children}</body>
     </html>
   );

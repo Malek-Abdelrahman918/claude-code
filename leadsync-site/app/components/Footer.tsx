@@ -7,7 +7,7 @@ export default function Footer() {
         <div className="grid">
           <div>
             <div className="logo">
-              <Logo size="sm" />
+              <Logo width={110} />
             </div>
             <p className="blurb">
               Custom AI automations for businesses that ship. Built one workflow
