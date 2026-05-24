@@ -1,17 +1,14 @@
 import Image from "next/image";
 
-type Props = {
-  width?: number;
-};
-
-export default function Logo({ width = 140 }: Props) {
+export default function Logo({ width = 120 }: { width?: number }) {
   return (
     <Image
       src="/logo.png"
       alt="LeadSync"
       width={width}
       height={0}
-      style={{ height: "auto", display: "block" }}
+      sizes={`${width}px`}
+      style={{ width, height: "auto", display: "block" }}
       priority
     />
   );
