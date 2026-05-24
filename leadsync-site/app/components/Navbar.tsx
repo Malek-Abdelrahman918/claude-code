@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { Zap, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
+import Logo from "./Logo";
 
 const links = [
   { href: "#services", label: "Services" },
@@ -16,11 +17,8 @@ export default function Navbar() {
   return (
     <nav className="top">
       <div className="container inner">
-        <a href="#" className="logo">
-          <div className="logo-mark">
-            <Zap size={18} strokeWidth={2.5} />
-          </div>
-          <span className="logo-text">LeadSync</span>
+        <a href="#" className="logo" aria-label="LeadSync home">
+          <Logo />
         </a>
 
         <div className="links">
@@ -31,30 +29,22 @@ export default function Navbar() {
           ))}
         </div>
 
-        <a className="btn btn--primary" href="#contact" style={{ display: "none" }}>
-          Book a call
-        </a>
-        <a
-          className="btn btn--primary"
-          href="#contact"
-          style={{ display: "inline-flex" }}
-          aria-label="Book a call"
-        >
+        <a className="btn btn--primary nav-cta" href="#contact">
           Book a call
         </a>
 
         <button
           aria-label="Toggle menu"
           onClick={() => setOpen((v) => !v)}
+          className="mobile-toggle"
           style={{
-            display: "none",
             background: "none",
             border: "none",
             color: "var(--fg)",
             cursor: "pointer",
             padding: 0,
+            display: "none",
           }}
-          className="mobile-toggle"
         >
           {open ? <X size={24} /> : <Menu size={24} />}
         </button>
@@ -62,7 +52,7 @@ export default function Navbar() {
 
       <style>{`
         @media (max-width: 800px) {
-          nav.top .btn--primary { display: none !important; }
+          nav.top .nav-cta { display: none !important; }
           .mobile-toggle { display: block !important; }
         }
       `}</style>

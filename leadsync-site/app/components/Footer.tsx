@@ -1,4 +1,4 @@
-import { Zap } from "lucide-react";
+import Logo from "./Logo";
 
 export default function Footer() {
   return (
@@ -7,21 +7,7 @@ export default function Footer() {
         <div className="grid">
           <div>
             <div className="logo">
-              <div
-                style={{
-                  width: 30,
-                  height: 30,
-                  borderRadius: 7,
-                  background: "var(--ls-gradient)",
-                  display: "grid",
-                  placeItems: "center",
-                  color: "white",
-                  flexShrink: 0,
-                }}
-              >
-                <Zap size={15} strokeWidth={2.5} />
-              </div>
-              <span className="logo-text">LeadSync</span>
+              <Logo size="sm" />
             </div>
             <p className="blurb">
               Custom AI automations for businesses that ship. Built one workflow
