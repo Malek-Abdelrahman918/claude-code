@@ -1,85 +1,86 @@
 "use client";
 
 import { useState } from "react";
+import { Zap, Menu, X } from "lucide-react";
 
-const navLinks = [
+const links = [
   { href: "#services", label: "Services" },
+  { href: "#work", label: "Work" },
   { href: "#pricing", label: "Pricing" },
   { href: "#about", label: "About" },
-  { href: "#contact", label: "Contact" },
 ];
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-slate-200/70 bg-white/80 backdrop-blur-md">
-      <nav className="container-x flex h-16 items-center justify-between">
-        <a href="#" className="flex items-center gap-2 text-lg font-bold tracking-tight text-slate-900">
-          <span className="grid h-8 w-8 place-items-center rounded-lg bg-gradient-to-br from-brand-500 to-brand-700 text-white">
-            <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={2.5}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
-            </svg>
-          </span>
-          LeadSync
+    <nav className="top">
+      <div className="container inner">
+        <a href="#" className="logo">
+          <div className="logo-mark">
+            <Zap size={18} strokeWidth={2.5} />
+          </div>
+          <span className="logo-text">LeadSync</span>
         </a>
 
-        <ul className="hidden items-center gap-8 md:flex">
-          {navLinks.map((l) => (
-            <li key={l.href}>
-              <a href={l.href} className="text-sm font-medium text-slate-600 hover:text-slate-900">
-                {l.label}
-              </a>
-            </li>
+        <div className="links">
+          {links.map((l) => (
+            <a key={l.href} className="link" href={l.href}>
+              {l.label}
+            </a>
           ))}
-        </ul>
-
-        <div className="hidden items-center gap-3 md:flex">
-          <a href="#contact" className="text-sm font-semibold text-slate-700 hover:text-slate-900">
-            Sign in
-          </a>
-          <a href="#contact" className="btn-primary py-2">
-            Get started
-          </a>
         </div>
+
+        <a className="btn btn--primary" href="#contact" style={{ display: "none" }}>
+          Book a call
+        </a>
+        <a
+          className="btn btn--primary"
+          href="#contact"
+          style={{ display: "inline-flex" }}
+          aria-label="Book a call"
+        >
+          Book a call
+        </a>
 
         <button
           aria-label="Toggle menu"
-          className="md:hidden"
           onClick={() => setOpen((v) => !v)}
+          style={{
+            display: "none",
+            background: "none",
+            border: "none",
+            color: "var(--fg)",
+            cursor: "pointer",
+            padding: 0,
+          }}
+          className="mobile-toggle"
         >
-          <svg className="h-6 w-6 text-slate-900" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
-            {open ? (
-              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-            ) : (
-              <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-            )}
-          </svg>
+          {open ? <X size={24} /> : <Menu size={24} />}
         </button>
-      </nav>
+      </div>
+
+      <style>{`
+        @media (max-width: 800px) {
+          nav.top .btn--primary { display: none !important; }
+          .mobile-toggle { display: block !important; }
+        }
+      `}</style>
 
       {open && (
-        <div className="border-t border-slate-200 md:hidden">
-          <ul className="container-x flex flex-col gap-1 py-3">
-            {navLinks.map((l) => (
-              <li key={l.href}>
-                <a
-                  href={l.href}
-                  onClick={() => setOpen(false)}
-                  className="block rounded-md px-2 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50"
-                >
-                  {l.label}
-                </a>
-              </li>
-            ))}
-            <li className="pt-2">
-              <a href="#contact" onClick={() => setOpen(false)} className="btn-primary w-full">
-                Get started
-              </a>
-            </li>
-          </ul>
+        <div className="mobile-menu">
+          {links.map((l) => (
+            <a key={l.href} href={l.href} onClick={() => setOpen(false)}>
+              {l.label}
+            </a>
+          ))}
+          <div style={{ padding: "12px 32px" }}>
+            <a className="btn btn--primary" href="#contact" onClick={() => setOpen(false)}>
+              Book a call
+            </a>
+          </div>
         </div>
       )}
-    </header>
+    </nav>
   );
 }

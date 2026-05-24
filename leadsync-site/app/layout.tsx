@@ -1,23 +1,19 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Outfit } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
 
 export const metadata: Metadata = {
-  title: "LeadSync — Capture, qualify, and convert more leads",
+  title: "LeadSync — AI automation for businesses that ship",
   description:
-    "LeadSync unifies your inbound leads across forms, ads, and CRMs so your team can respond in seconds, not days.",
+    "Custom AI workflows for lead handling, sales, support, and ops. Built one client at a time on n8n, OpenAI, Claude, and the APIs you already use.",
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={inter.variable}>
-      <body className="font-sans">{children}</body>
+    <html lang="en" className={outfit.variable}>
+      <body>{children}</body>
     </html>
   );
 }
