@@ -18,7 +18,7 @@ export default function Navbar() {
     <nav className="top">
       <div className="container inner">
         <a href="#" className="logo" aria-label="LeadSync home">
-          <Logo width={200} />
+          <Logo width={235} />
         </a>
 
         <div className="links">
