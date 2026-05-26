@@ -38,7 +38,7 @@ export default function Footer() {
           <div>
             <h5>Connect</h5>
             <ul>
-              <li><a href="https://linkedin.com/in/malek-abdelrahman" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+              <li><a href="https://www.linkedin.com/in/malek-abdelrahmanma/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
               <li><a href="https://wa.me/201142339381" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
               <li><a href="mailto:hi@leadsync.dev">Email</a></li>
             </ul>

@@ -97,11 +97,11 @@ export default function Contact() {
           </form>
 
           <div className="contact-links">
-            <a href="https://linkedin.com/in/malek-abdelrahman" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.linkedin.com/in/malek-abdelrahmanma/" target="_blank" rel="noopener noreferrer">
               <Linkedin size={22} className="ico" />
               <div>
                 <div className="ll">LinkedIn</div>
-                <div className="vv">/in/malek-abdelrahman</div>
+                <div className="vv">/in/malek-abdelrahmanma</div>
               </div>
               <ArrowUpRight size={16} className="arrow" />
             </a>
