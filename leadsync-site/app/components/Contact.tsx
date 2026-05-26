@@ -105,11 +105,11 @@ export default function Contact() {
               </div>
               <ArrowUpRight size={16} className="arrow" />
             </a>
-            <a href="https://wa.me/" target="_blank" rel="noopener noreferrer">
+            <a href="https://wa.me/201142339381" target="_blank" rel="noopener noreferrer">
               <MessageCircle size={22} className="ico" />
               <div>
                 <div className="ll">WhatsApp</div>
-                <div className="vv">+971 · message me directly</div>
+                <div className="vv">+20 114 233 9381</div>
               </div>
               <ArrowUpRight size={16} className="arrow" />
             </a>
