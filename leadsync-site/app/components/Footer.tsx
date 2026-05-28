@@ -29,7 +29,7 @@ export default function Footer() {
             <h5>Company</h5>
             <ul>
               <li><a href="#about">About</a></li>
-              <li><a href="#work">Case study</a></li>
+              <li><a href="#work">Example build</a></li>
               <li><a href="#pricing">Pricing</a></li>
               <li><a href="#contact">Contact</a></li>
             </ul>
