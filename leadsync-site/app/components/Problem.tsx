@@ -3,7 +3,7 @@ export default function Problem() {
     {
       num: "01",
       h: "Leads go cold while you sleep.",
-      p: "The first reply matters more than the pitch. Inbox at 9am means you've already lost a third of last night's leads.",
+      p: "The first reply matters more than the pitch. By the time someone reads last night's enquiries at 9am, the best prospects may already be talking to another agency.",
     },
     {
       num: "02",
