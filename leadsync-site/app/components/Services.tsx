@@ -1,83 +1,68 @@
-import {
-  Users,
-  TrendingUp,
-  Headphones,
-  Settings2,
-  FileText,
-  Database,
-  BarChart3,
-  ShoppingBag,
-  Edit3,
-} from "lucide-react";
+const deliverables = [
+  "A review of how your team handles customers, requests and repeat work.",
+  "A shortlist of bottlenecks worth fixing, ranked by value and effort.",
+  "A practical plan with scope, tools and how success will be judged.",
+  "A clear view of what is not worth automating.",
+];
 
-const services = [
-  {
-    Icon: Users,
-    h: "Lead handling",
-    p: "Capture, score, enrich, and route inbound leads from forms, ads, DMs, and WhatsApp into your CRM in seconds.",
-  },
-  {
-    Icon: TrendingUp,
-    h: "Sales workflows",
-    p: "Quote generation, follow-up sequences, deal-stage automations, meeting prep dossiers, post-call summaries.",
-  },
-  {
-    Icon: Headphones,
-    h: "Customer support bots",
-    p: "24/7 first-line agent on WhatsApp, web chat, or email. Escalates to a human with full context when it should.",
-  },
-  {
-    Icon: Settings2,
-    h: "Internal operations",
-    p: "Onboarding flows, approvals, internal Slack assistants, expense routing, knowledge-base bots for your team.",
-  },
-  {
-    Icon: FileText,
-    h: "Document processing",
-    p: "Invoices, contracts, IDs, statements — extracted, validated, and pushed wherever they belong.",
-  },
-  {
-    Icon: Database,
-    h: "Data pipelines",
-    p: "Scheduled ETL between your tools. Dedupe, normalize, sync. Stop exporting CSVs every Monday.",
-  },
-  {
-    Icon: BarChart3,
-    h: "Reporting dashboards",
-    p: "Live KPIs auto-pulled from your stack, posted to Slack daily or rendered in Notion / Looker.",
-  },
-  {
-    Icon: ShoppingBag,
-    h: "E-commerce automation",
-    p: "Abandoned-cart recovery, order updates over WhatsApp, returns workflows, dynamic restock alerts.",
-  },
-  {
-    Icon: Edit3,
-    h: "Content workflows",
-    p: "Brief → draft → review → publish pipelines. AI-assisted, human-approved. Works for blog, social, and internal comms.",
-  },
+const others = [
+  { h: "Customer and enquiry handling", p: "Capture, qualify and route enquiries from WhatsApp, forms and email, so the right person follows up with context." },
+  { h: "Customer-support assistants", p: "First-line replies and triage on WhatsApp, web chat or email, escalating to your team with context." },
+  { h: "Sales follow-up and workflow automation", p: "Reminders, sequences and handovers, so leads and customers are not forgotten." },
+  { h: "Internal operations and administration", p: "Onboarding, approvals and internal requests handled with less manual admin." },
+  { h: "Document processing", p: "Contracts, IDs and invoices extracted, validated and filed." },
+  { h: "Business software and CRM integrations", p: "Connect your CRM, spreadsheets, messaging and internal tools so information is entered once." },
+  { h: "Reporting and operational visibility", p: "Reports pulled from your existing tools and delivered where your team already works." },
 ];
 
 export default function Services() {
   return (
-    <section id="services">
-      <div className="container">
-        <div className="section-head">
-          <span className="overline">Services</span>
-          <h2>If it&apos;s repetitive, it&apos;s automatable.</h2>
-          <p>
-            A non-exhaustive list of what I can build for your agency. Yours
-            doesn&apos;t have to be on it — most projects are bespoke.
+    <section id="services" className="section on-dark" aria-labelledby="services-title">
+      <div className="wrap">
+        <p className="eyebrow">
+          <span className="eyebrow__idx">–</span>
+          <span>Services</span>
+        </p>
+
+        <div className="shead">
+          <h2 id="services-title" className="h2">
+            Assessment first, <span className="serif">then implementation.</span>
+          </h2>
+          <p className="lede">
+            Most engagements start with a clear look at where time is being lost. From there, I
+            scope what is worth building and implement it with the tools you already have.
           </p>
         </div>
-        <div className="services">
-          {services.map(({ Icon, h, p }) => (
-            <div key={h} className="service">
-              <Icon size={26} className="ico" />
-              <h3>{h}</h3>
-              <p>{p}</p>
-            </div>
-          ))}
+
+        <div className="services__grid">
+          <article className="feature">
+            <p className="tag" style={{ color: "var(--acc)" }}>
+              Core service
+            </p>
+            <h3 className="h3">AI opportunity assessment</h3>
+            <p className="lede">
+              Before anything is built, LeadSync identifies where AI can genuinely improve how your
+              business operates, so you invest in the right problem first.
+            </p>
+            <ol className="deliverables">
+              {deliverables.map((d) => (
+                <li key={d}>{d}</li>
+              ))}
+            </ol>
+          </article>
+
+          <div>
+            <p className="tag index__head">Also available</p>
+            <ul className="index">
+              {others.map((s, i) => (
+                <li key={s.h}>
+                  <span className="num">{String(i + 2).padStart(2, "0")}</span>
+                  <h3>{s.h}</h3>
+                  <p>{s.p}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
     </section>

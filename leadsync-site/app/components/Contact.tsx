@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowRight, Linkedin, MessageCircle, Mail, ArrowUpRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 
 type Status = "idle" | "loading" | "success" | "error";
 
@@ -63,111 +63,120 @@ export default function Contact() {
     }
   }
 
+
   return (
-    <section id="contact">
-      <div className="container">
-        <div className="section-head">
-          <span className="overline">Contact</span>
-          <h2>Let&apos;s see if I can help.</h2>
-          <p>
-            Tell me what&apos;s broken in two sentences. I&apos;ll come back
-            within 24 hours with either &quot;yes, here&apos;s how&quot; or a
-            referral to someone better suited.
-          </p>
-        </div>
+    <section id="contact" className="section on-dark" aria-labelledby="contact-title">
+      <div className="wrap">
+        <p className="eyebrow">
+          <span className="eyebrow__idx">09</span>
+          <span>Contact</span>
+        </p>
 
-        <div className="contact-wrap">
-          <form
-            className="form"
-            onSubmit={handleSubmit}
-            onChange={() => {
-              // Editing after a result clears it so the form can be sent again.
-              if (status === "success" || status === "error") setStatus("idle");
-            }}
-          >
-            <div className="field">
-              <label htmlFor="name">Your name</label>
-              <input id="name" name="name" type="text" placeholder="Jane Doe" maxLength={100} required />
-            </div>
-            <div className="field">
-              <label htmlFor="email">Work email</label>
-              <input id="email" name="email" type="email" placeholder="jane@company.com" maxLength={254} required />
-            </div>
-            <div className="field">
-              <label htmlFor="business">What does your business do?</label>
-              <input id="business" name="business" type="text" placeholder="Real estate agency in New Cairo" maxLength={200} />
-            </div>
-            <div className="field">
-              <label htmlFor="task">What&apos;s the most repetitive task on your team?</label>
-              <textarea
-                id="task"
-                name="task"
-                placeholder="We get 80 WhatsApp messages a day asking the same 5 questions..."
-                maxLength={2000}
-              />
+        <div className="contact__grid">
+          <div>
+            <div className="contact__intro">
+              <h2 id="contact-title" className="h2">
+                Prefer to <span className="serif">ask first?</span>
+              </h2>
+              <p className="lede">
+                Not ready to book a call? Send a question and I’ll reply by email. To book a
+                discovery call, use the form above.
+              </p>
             </div>
 
-            {/* Spam trap: off-screen, and inert so it can't be focused, clicked, or read by assistive tech. */}
-            <div
-              aria-hidden="true"
-              ref={(el) => el?.setAttribute("inert", "")}
-              style={{ position: "absolute", left: "-9999px", width: 1, height: 1, overflow: "hidden" }}
+            <form
+              className="form"
+              onSubmit={handleSubmit}
+              onChange={() => {
+                // Editing after a result clears it so the form can be sent again.
+                if (status === "success" || status === "error") setStatus("idle");
+              }}
             >
-              <label htmlFor="contact_ref">Leave this field empty</label>
-              <input id="contact_ref" name="contact_ref" type="text" tabIndex={-1} autoComplete="off" />
-            </div>
-
-            <div aria-live="polite">
-              {status === "loading" && (
-                <p style={{ color: "var(--fg-muted)", fontSize: 15, margin: 0 }}>Sending your message…</p>
-              )}
-              {status === "success" && (
-                <p className="form-success">
-                  Message sent. I&apos;ll reply within 24 hours.
-                </p>
-              )}
-              {status === "error" && (
-                <p className="form-error" role="alert">{errorMsg}</p>
-              )}
-            </div>
-
-            <button
-              className="btn btn--primary btn--lg"
-              type="submit"
-              disabled={status === "loading"}
-            >
-              {status === "loading" ? "Sending…" : status === "success" ? "Sent ✓" : (
-                <>Send <ArrowRight size={18} className="arrow" /></>
-              )}
-            </button>
-          </form>
-
-          <div className="contact-links">
-            <a href="https://www.linkedin.com/in/malek-abdelrahmanma/" target="_blank" rel="noopener noreferrer">
-              <Linkedin size={22} className="ico" />
-              <div>
-                <div className="ll">LinkedIn</div>
-                <div className="vv">/in/malek-abdelrahmanma</div>
+              <div className="field">
+                <label htmlFor="name">Your name</label>
+                <input id="name" name="name" type="text" placeholder="Jane Doe" maxLength={100} required />
               </div>
-              <ArrowUpRight size={16} className="arrow" />
-            </a>
-            <a href="https://wa.me/201142339381" target="_blank" rel="noopener noreferrer">
-              <MessageCircle size={22} className="ico" />
-              <div>
-                <div className="ll">WhatsApp</div>
-                <div className="vv">+20 114 233 9381</div>
+              <div className="field">
+                <label htmlFor="email">Work email</label>
+                <input id="email" name="email" type="email" placeholder="jane@company.com" maxLength={254} required />
               </div>
-              <ArrowUpRight size={16} className="arrow" />
-            </a>
-            <a href="mailto:hi@leadsync.dev">
-              <Mail size={22} className="ico" />
-              <div>
-                <div className="ll">Email</div>
-                <div className="vv">hi@leadsync.dev</div>
+              <div className="field">
+                <label htmlFor="business">What does your business do?</label>
+                <input id="business" name="business" type="text" placeholder="e.g. A clinic, agency or distributor in Cairo" maxLength={200} />
               </div>
-              <ArrowUpRight size={16} className="arrow" />
-            </a>
+              <div className="field">
+                <label htmlFor="task">Where is your team losing the most time?</label>
+                <textarea
+                  id="task"
+                  name="task"
+                  placeholder="e.g. Enquiries arrive on WhatsApp, email and forms, and someone copies them into a spreadsheet by hand."
+                  maxLength={2000}
+                />
+              </div>
+
+              {/* Spam trap: off-screen, and inert so it can't be focused, clicked, or read by assistive tech. */}
+              <div
+                aria-hidden="true"
+                ref={(el) => el?.setAttribute("inert", "")}
+                style={{ position: "absolute", left: "-9999px", width: 1, height: 1, overflow: "hidden" }}
+              >
+                <label htmlFor="contact_ref">Leave this field empty</label>
+                <input id="contact_ref" name="contact_ref" type="text" tabIndex={-1} autoComplete="off" />
+              </div>
+
+              <div aria-live="polite">
+                {status === "loading" && <p className="form-status">Sending your message…</p>}
+                {status === "success" && (
+                  <p className="form-success">Message sent. Thank you for getting in touch.</p>
+                )}
+                {status === "error" && (
+                  <p className="form-error" role="alert">{errorMsg}</p>
+                )}
+              </div>
+
+              <button
+                className="btn btn--lg"
+                type="submit"
+                disabled={status === "loading"}
+              >
+                {status === "loading" ? "Sending…" : status === "success" ? "Sent ✓" : (
+                  <>Send <ArrowRight size={18} className="arrow" aria-hidden="true" /></>
+                )}
+              </button>
+            </form>
           </div>
+
+          <aside aria-label="Other ways to reach me">
+            <p className="tag">Prefer to write directly?</p>
+            <ul className="channels">
+              <li>
+                <a className="channel" href="https://wa.me/201142339381" target="_blank" rel="noopener noreferrer">
+                  <span className="tag">WhatsApp</span>
+                  <span className="channel__value">+20 114 233 9381</span>
+                  <ArrowUpRight size={20} className="arrow" aria-hidden="true" />
+                </a>
+              </li>
+              <li>
+                <a className="channel" href="mailto:hi@leadsync.dev">
+                  <span className="tag">Email</span>
+                  <span className="channel__value">hi@leadsync.dev</span>
+                  <ArrowUpRight size={20} className="arrow" aria-hidden="true" />
+                </a>
+              </li>
+              <li>
+                <a
+                  className="channel"
+                  href="https://www.linkedin.com/in/malek-abdelrahmanma/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span className="tag">LinkedIn</span>
+                  <span className="channel__value">/in/malek-abdelrahmanma</span>
+                  <ArrowUpRight size={20} className="arrow" aria-hidden="true" />
+                </a>
+              </li>
+            </ul>
+          </aside>
         </div>
       </div>
     </section>

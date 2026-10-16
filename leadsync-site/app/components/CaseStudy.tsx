@@ -1,100 +1,143 @@
-import { Bell, FlaskConical } from "lucide-react";
+// Fictional demo content: every name, number and message here is invented for illustration.
+const messages: { from: "in" | "out"; node: React.ReactNode; time: string }[] = [
+  {
+    from: "in",
+    node: (
+      <>
+        <span lang="ar" dir="rtl" className="ar">
+          السلام عليكم
+        </span>
+        , I’m looking for a 3-bedroom apartment in Sheikh Zayed.
+      </>
+    ),
+    time: "10:42",
+  },
+  {
+    from: "out",
+    node: (
+      <>
+        <span lang="ar" dir="rtl" className="ar">
+          وعليكم السلام
+        </span>
+        ! Happy to help. What budget range are you considering?
+      </>
+    ),
+    time: "10:42",
+  },
+  { from: "in", node: <>Up to 8M EGP.</>, time: "10:43" },
+  {
+    from: "out",
+    node: <>Is it for living or investment, and do you prefer a compound?</>,
+    time: "10:43",
+  },
+  {
+    from: "in",
+    node: <>For living, in a compound. Can I view something on Saturday?</>,
+    time: "10:44",
+  },
+  {
+    from: "out",
+    node: <>Noted. I’ll pass this to an agent now so they can confirm a time with you.</>,
+    time: "10:44",
+  },
+];
+
+const fields: [string, string][] = [
+  ["Interest", "3-bedroom apartment"],
+  ["Area", "Sheikh Zayed"],
+  ["Compound", "Preferred"],
+  ["Purpose", "Living"],
+  ["Budget", "Up to 8M EGP"],
+  ["Timing", "Viewing on Saturday"],
+];
 
 export default function CaseStudy() {
   return (
-    <section id="work">
-      <div className="container">
-        <div className="section-head">
-          <span className="overline">Example build</span>
-          <h2>What I can build: WhatsApp AI for real estate.</h2>
+    <section id="work" className="section on-light" aria-labelledby="work-title">
+      <div className="wrap">
+        <p className="eyebrow">
+          <span className="eyebrow__idx">03</span>
+          <span>Demo</span>
+        </p>
+
+        <div className="shead">
+          <h2 id="work-title" className="h2">
+            A WhatsApp qualification flow, <span className="serif">end to end.</span>
+          </h2>
+          <p className="lede">
+            The kind of system I build for an Egyptian agency: one conversation in, one structured
+            lead and agent handoff out.
+          </p>
         </div>
 
-        <div className="case">
-          {/* Illustrative demo banner */}
-          <div style={{
-            display: "flex",
-            alignItems: "center",
-            gap: 10,
-            padding: "10px 20px",
-            background: "rgba(0,194,224,.08)",
-            borderBottom: "1px solid rgba(0,194,224,.15)",
-            fontSize: 13,
-            color: "var(--ls-cyan-soft)",
-            fontFamily: "var(--font-mono)",
-            letterSpacing: "0.03em",
-          }}>
-            <FlaskConical size={14} style={{ flexShrink: 0 }} />
-            Illustrative demo — a fictional enquiry, not a real customer conversation or client engagement
+        <p className="notice" role="note">
+          <strong>Illustrative demo.</strong>
+          <span>
+            Fictional conversation and data. Not a real customer interaction or client engagement.
+          </span>
+        </p>
+
+        <div className="demo__grid">
+          <div className="thread" role="group" aria-label="Fictional WhatsApp conversation">
+            <div className="thread__head">
+              <span className="thread__av" aria-hidden="true">
+                LS
+              </span>
+              <div>
+                <div className="thread__name">Demo assistant · LeadSync</div>
+                <div className="thread__sub">Demo · fictional conversation</div>
+              </div>
+            </div>
+            <ol className="msgs">
+              {messages.map((m, i) => (
+                <li key={i} className={`msg msg--${m.from}`}>
+                  <span className="sr-only">{m.from === "in" ? "Buyer: " : "Assistant: "}</span>
+                  {m.node}
+                  <small aria-hidden="true">{m.time}</small>
+                </li>
+              ))}
+            </ol>
           </div>
 
-          <div className="case-inner">
-            <div>
-              <div className="tag">Real estate · Egypt · Fictional demo</div>
-              <h3>
-                From a new WhatsApp enquiry to a qualified lead in an agent&apos;s hands.
-              </h3>
-              <p className="lede">
-                Slow replies make it easy to lose property enquiries. This
-                fictional demo shows the kind of WhatsApp assistant I can build
-                for an Egyptian agency: it greets a new enquiry in Arabic or
-                English, asks the qualifying questions, organizes the details,
-                and passes the lead to the right agent.
-              </p>
-
-              <div className="stats">
-                <div className="stat">
-                  <div className="v grad">Qualify</div>
-                  <div className="l">Budget, area, timing</div>
-                </div>
-                <div className="stat">
-                  <div className="v">Organize</div>
-                  <div className="l">Prospect details</div>
-                </div>
-                <div className="stat">
-                  <div className="v">Route</div>
-                  <div className="l">To the right agent</div>
-                </div>
+          <div>
+            <div className="panel">
+              <div className="panel__head">
+                <span>Structured lead</span>
+                <span>Demo data</span>
               </div>
-
-              <div className="stack">
-                {["n8n", "Claude Sonnet", "WhatsApp Cloud API", "Redis", "HubSpot"].map((t) => (
-                  <span key={t}>{t}</span>
+              <dl className="record" style={{ padding: "6px 18px" }}>
+                {fields.map(([k, v]) => (
+                  <div key={k}>
+                    <dt>{k}</dt>
+                    <dd>{v}</dd>
+                  </div>
                 ))}
+                <div>
+                  <dt>Status</dt>
+                  <dd>
+                    <span className="chip">Ready for agent</span>
+                  </dd>
+                </div>
+              </dl>
+              <div className="handoff">
+                <span className="tick" aria-hidden="true" style={{ marginTop: 4 }} />
+                <div>
+                  <strong>Handed to an agent</strong>
+                  <span>Details and full transcript attached, ready to confirm the viewing.</span>
+                </div>
               </div>
             </div>
 
-            <div className="wa-mock">
-              <div className="head">
-                <div className="av">D</div>
-                <div>
-                  <div className="nm">Demo assistant · LeadSync</div>
-                  <div className="sub">● demo · fictional conversation</div>
-                </div>
-              </div>
-
-              <div className="msgs">
-                <div className="b them">
-                  السلام عليكم، I&apos;m looking for a 3-bedroom apartment in Sheikh Zayed, budget up to 8M EGP.
-                </div>
-                <div className="b us">
-                  وعليكم السلام! Happy to help. Is it for living or investment, and do you prefer a compound?
-                  <div className="meta">Demo message</div>
-                </div>
-                <div className="b them">For living, in a compound. Can I view something on Saturday?</div>
-                <div className="b us">
-                  Noted: 3BR · Sheikh Zayed · compound · up to 8M EGP · Saturday viewing. I&apos;ll pass this to an agent now.
-                  <div className="meta">Demo message</div>
-                </div>
-              </div>
-
-              <div className="agent-alert">
-                <Bell size={14} className="ico" />
-                <div>
-                  <b style={{ color: "var(--fg)" }}>Demo: enquiry routed to an agent</b>
-                  <br />
-                  Budget stated · Area and unit type captured · Viewing requested
-                </div>
-              </div>
+            <div className="demo__stack">
+              <p className="tag">Example stack for a build like this</p>
+              <ul className="chips">
+                {["n8n", "Claude", "WhatsApp Cloud API", "Redis", "CRM or spreadsheet"].map((t) => (
+                  <li key={t}>{t}</li>
+                ))}
+              </ul>
+              <p className="small" style={{ marginTop: 12 }}>
+                A real project uses the tools your agency already has.
+              </p>
             </div>
           </div>
         </div>

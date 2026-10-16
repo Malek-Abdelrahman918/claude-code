@@ -1,12 +1,14 @@
 "use client";
 
-import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { useEffect, useState } from "react";
+import { ArrowRight, ArrowUpRight, Menu, X } from "lucide-react";
 import Logo from "./Logo";
+import { BOOKING_ANCHOR } from "../lib/config";
 
 const links = [
+  { href: "#work", label: "Demo" },
   { href: "#services", label: "Services" },
-  { href: "#work", label: "Example" },
+  { href: "#how", label: "Process" },
   { href: "#pricing", label: "Pricing" },
   { href: "#about", label: "About" },
 ];
@@ -14,63 +16,60 @@ const links = [
 export default function Navbar() {
   const [open, setOpen] = useState(false);
 
+  // Escape closes the mobile menu.
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open]);
+
   return (
-    <nav className="top">
-      <div className="container inner">
-        <a href="#" className="logo" aria-label="LeadSync home">
-          <Logo width={235} />
+    <header className="nav on-dark">
+      <div className="wrap nav__inner">
+        <a href="#" className="nav__brand" aria-label="LeadSync, back to top">
+          <Logo width={156} />
         </a>
 
-        <div className="links">
+        <nav className="nav__links" aria-label="Primary">
           {links.map((l) => (
-            <a key={l.href} className="link" href={l.href}>
+            <a key={l.href} className="nav__link" href={l.href}>
               {l.label}
             </a>
           ))}
-        </div>
+        </nav>
 
-        <a className="btn btn--primary nav-cta" href="#contact">
-          Book a call
+        <a className="btn btn--sm nav__cta" href={BOOKING_ANCHOR}>
+          Book a call <ArrowRight size={16} className="arrow" aria-hidden="true" />
         </a>
 
         <button
-          aria-label="Toggle menu"
+          type="button"
+          className="nav__toggle"
+          aria-expanded={open}
+          aria-controls="nav-panel"
+          aria-label={open ? "Close menu" : "Open menu"}
           onClick={() => setOpen((v) => !v)}
-          className="mobile-toggle"
-          style={{
-            background: "none",
-            border: "none",
-            color: "var(--fg)",
-            cursor: "pointer",
-            padding: 0,
-            display: "none",
-          }}
         >
-          {open ? <X size={24} /> : <Menu size={24} />}
+          {open ? <X size={24} aria-hidden="true" /> : <Menu size={24} aria-hidden="true" />}
         </button>
       </div>
 
-      <style>{`
-        @media (max-width: 800px) {
-          nav.top .nav-cta { display: none !important; }
-          .mobile-toggle { display: block !important; }
-        }
-      `}</style>
-
-      {open && (
-        <div className="mobile-menu">
+      <nav id="nav-panel" className="nav__panel" data-open={open} aria-label="Mobile">
+        <div className="wrap">
           {links.map((l) => (
             <a key={l.href} href={l.href} onClick={() => setOpen(false)}>
               {l.label}
+              <ArrowUpRight size={18} aria-hidden="true" />
             </a>
           ))}
-          <div style={{ padding: "12px 32px" }}>
-            <a className="btn btn--primary" href="#contact" onClick={() => setOpen(false)}>
-              Book a call
-            </a>
-          </div>
+          <a className="btn" href={BOOKING_ANCHOR} onClick={() => setOpen(false)}>
+            Book a call
+          </a>
         </div>
-      )}
-    </nav>
+      </nav>
+    </header>
   );
 }

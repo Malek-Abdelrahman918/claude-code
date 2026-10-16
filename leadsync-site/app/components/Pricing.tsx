@@ -1,48 +1,53 @@
-import { Check, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import { BOOKING_ANCHOR } from "../lib/config";
 
-const features = [
-  "Discovery + scoping",
-  "Production-ready workflow",
-  "Full source code & docs",
-  "Deploy on your infra or mine",
-  "14 days post-launch support",
-  "Maintenance retainer if you want it",
+const included = [
+  "Discovery and problem assessment",
+  "A system designed around your operations",
+  "Implementation and integration with your tools",
+  "Full source code and documentation",
+  "Deployed in your environment or mine",
+  "Optional ongoing support, agreed separately",
 ];
 
 export default function Pricing() {
   return (
-    <section id="pricing">
-      <div className="container">
-        <div
-          className="section-head"
-          style={{ textAlign: "center", margin: "0 auto 64px" }}
-        >
-          <span className="overline">Pricing</span>
-          <h2>One flat quote per project.</h2>
-          <p style={{ margin: "16px auto 0" }}>
-            No subscriptions. No per-seat math. No surprises. You pay for the
-            outcome, not the tools.
-          </p>
-        </div>
+    <section id="pricing" className="section on-dark" aria-labelledby="pricing-title">
+      <div className="wrap">
+        <p className="eyebrow">
+          <span className="eyebrow__idx">06</span>
+          <span>Pricing</span>
+        </p>
 
-        <div className="price-card">
-          <div className="tag">Custom engagement</div>
-          <h3>Priced per project.</h3>
-          <div className="price">
-            <span className="grad">Free</span> 30-minute discovery call. Quote
-            within 48h.
+        <div className="pricing__grid">
+          <div>
+            <h2 id="pricing-title" className="h2">
+              One flat quote <span className="serif">per project.</span>
+            </h2>
+            <p className="lede" style={{ marginTop: 20 }}>
+              No subscriptions, no per-seat maths, no surprises. You pay for the system you
+              scoped, not for the tools.
+            </p>
           </div>
-          <ul>
-            {features.map((f) => (
-              <li key={f}>
-                <Check size={16} className="ck" />
-                {f}
-              </li>
-            ))}
-          </ul>
-          <a className="btn btn--gradient btn--lg" href="#contact">
-            Book a discovery call <ArrowRight size={18} className="arrow" />
-          </a>
+
+          <div className="quote">
+            <p className="tag" style={{ color: "var(--acc)" }}>
+              Custom engagement
+            </p>
+            <h3 className="h3">Priced per project.</h3>
+            <p className="quote__price">A free discovery call, then a written quote.</p>
+            <ul>
+              {included.map((f) => (
+                <li key={f}>
+                  <span className="tick" aria-hidden="true" />
+                  {f}
+                </li>
+              ))}
+            </ul>
+            <a className="btn btn--lg" href={BOOKING_ANCHOR}>
+              Book a Discovery Call <ArrowRight size={18} className="arrow" aria-hidden="true" />
+            </a>
+          </div>
         </div>
       </div>
     </section>

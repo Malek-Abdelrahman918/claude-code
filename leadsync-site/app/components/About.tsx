@@ -1,27 +1,58 @@
 export default function About() {
   return (
-    <section id="about">
-      <div className="container">
-        <div className="section-head">
-          <span className="overline">About</span>
-          <h2>Built by one engineer, focused on real estate.</h2>
-        </div>
+    <section id="about" className="section about on-light" aria-labelledby="about-title">
+      <div className="wrap">
+        <p className="eyebrow">
+          <span className="eyebrow__idx">07</span>
+          <span>About</span>
+        </p>
 
-        <div className="about-card">
-          <div className="av">M</div>
+        <div className="about__grid">
           <div>
-            <h3>Malek Abdelrahman</h3>
-            <div className="role">Founder · LeadSync</div>
-            <p>
-              I started LeadSync to build the AI automations that small real
-              estate teams in Egypt actually need, instead of selling them
-              another platform they&apos;ll have to babysit. My background is
-              in engineering, and I&apos;m building a working WhatsApp
-              lead-qualification prototype on n8n, Claude, and OpenAI. LeadSync
-              is early-stage: I&apos;m starting with agencies in Sheikh Zayed,
-              6th of October, and New Cairo, and I&apos;ll scope every project
-              honestly before we begin.
+            <h2 id="about-title" className="h2 about__name">
+              Malek <span className="serif">Abdelrahman</span>
+            </h2>
+            <p className="about__role">Founder · LeadSync</p>
+          </div>
+
+          <div>
+            <p className="about__body">
+              I started LeadSync to help businesses use AI where it genuinely improves operations,
+              instead of selling them another platform to manage. My background is in engineering.
+              I find the practical problems worth solving, then design and implement systems that
+              connect with the tools a business already uses. LeadSync is early-stage, and I’m
+              building a working WhatsApp lead-qualification prototype.
             </p>
+            <dl className="facts">
+              <div>
+                <dt>Stage</dt>
+                <dd>Early-stage consultancy, taking on a small number of projects</dd>
+              </div>
+              <div>
+                <dt>Focus</dt>
+                <dd className="areas">
+                  <span>Customer handling</span>
+                  <span>Internal processes</span>
+                  <span>Tool integration</span>
+                </dd>
+              </div>
+              <div>
+                <dt>Approach</dt>
+                <dd>Each project is scoped in writing before work begins</dd>
+              </div>
+              <div>
+                <dt>Elsewhere</dt>
+                <dd>
+                  <a
+                    href="https://www.linkedin.com/in/malek-abdelrahmanma/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    LinkedIn
+                  </a>
+                </dd>
+              </div>
+            </dl>
           </div>
         </div>
       </div>
