@@ -107,9 +107,10 @@ export default function Contact() {
               />
             </div>
 
-            {/* Spam trap: hidden from people, ignored by assistive tech. */}
+            {/* Spam trap: off-screen, and inert so it can't be focused, clicked, or read by assistive tech. */}
             <div
               aria-hidden="true"
+              ref={(el) => el?.setAttribute("inert", "")}
               style={{ position: "absolute", left: "-9999px", width: 1, height: 1, overflow: "hidden" }}
             >
               <label htmlFor="contact_ref">Leave this field empty</label>
