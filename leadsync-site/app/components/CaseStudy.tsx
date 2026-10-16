@@ -10,7 +10,7 @@ export default function CaseStudy() {
         </div>
 
         <div className="case">
-          {/* Illustrative example banner */}
+          {/* Illustrative demo banner */}
           <div style={{
             display: "flex",
             alignItems: "center",
@@ -24,35 +24,35 @@ export default function CaseStudy() {
             letterSpacing: "0.03em",
           }}>
             <FlaskConical size={14} style={{ flexShrink: 0 }} />
-            Illustrative example — representative of the kind of system I build, not a specific client engagement
+            Illustrative demo — a fictional enquiry, not a real customer conversation or client engagement
           </div>
 
           <div className="case-inner">
             <div>
-              <div className="tag">Real estate · Example scenario</div>
+              <div className="tag">Real estate · Egypt · Fictional demo</div>
               <h3>
-                From cold form-fill to hot agent ping — in under 90 seconds.
+                From a new WhatsApp enquiry to a qualified lead in an agent&apos;s hands.
               </h3>
               <p className="lede">
-                A typical real estate brokerage loses a large share of inbound
-                leads to slow replies. This is an example of a WhatsApp
-                assistant I can build: it qualifies leads in Arabic and English,
-                shares matching listings instantly, and pings the right agent
-                the moment a lead heats up.
+                Slow replies make it easy to lose property enquiries. This
+                fictional demo shows the kind of WhatsApp assistant I can build
+                for an Egyptian agency: it greets a new enquiry in Arabic or
+                English, asks the qualifying questions, organizes the details,
+                and passes the lead to the right agent.
               </p>
 
               <div className="stats">
                 <div className="stat">
-                  <div className="v grad">~10×</div>
-                  <div className="l">Faster first reply <span style={{ fontSize: 10, color: "var(--fg-subtle)", display: "block" }}>example outcome</span></div>
+                  <div className="v grad">Qualify</div>
+                  <div className="l">Budget, area, timing</div>
                 </div>
                 <div className="stat">
-                  <div className="v">&gt;60%</div>
-                  <div className="l">Qualified rate <span style={{ fontSize: 10, color: "var(--fg-subtle)", display: "block" }}>example outcome</span></div>
+                  <div className="v">Organize</div>
+                  <div className="l">Prospect details</div>
                 </div>
                 <div className="stat">
-                  <div className="v">2–6 wks</div>
-                  <div className="l">Typical timeline</div>
+                  <div className="v">Route</div>
+                  <div className="l">To the right agent</div>
                 </div>
               </div>
 
@@ -65,34 +65,34 @@ export default function CaseStudy() {
 
             <div className="wa-mock">
               <div className="head">
-                <div className="av">A</div>
+                <div className="av">D</div>
                 <div>
-                  <div className="nm">Ayaan · LeadSync Concierge</div>
-                  <div className="sub">● online · usually replies instantly</div>
+                  <div className="nm">Demo assistant · LeadSync</div>
+                  <div className="sub">● demo · fictional conversation</div>
                 </div>
               </div>
 
               <div className="msgs">
                 <div className="b them">
-                  Hi, looking for a 2BR in Dubai Marina under 2.5M AED. Move in by August.
+                  السلام عليكم، I&apos;m looking for a 3-bedroom apartment in Sheikh Zayed, budget up to 8M EGP.
                 </div>
                 <div className="b us">
-                  Got it. Pulling 6 matching units now — sea view, balcony, ready handover. One sec.
-                  <div className="meta">10:42 · ✓✓</div>
+                  وعليكم السلام! Happy to help. Is it for living or investment, and do you prefer a compound?
+                  <div className="meta">Demo message</div>
                 </div>
+                <div className="b them">For living, in a compound. Can I view something on Saturday?</div>
                 <div className="b us">
-                  Here are 3 I&apos;d bet on for your range. Want viewings this weekend?
-                  <div className="meta">10:42 · ✓✓</div>
+                  Noted: 3BR · Sheikh Zayed · compound · up to 8M EGP · Saturday viewing. I&apos;ll pass this to an agent now.
+                  <div className="meta">Demo message</div>
                 </div>
-                <div className="b them">Yes, Saturday afternoon works.</div>
               </div>
 
               <div className="agent-alert">
                 <Bell size={14} className="ico" />
                 <div>
-                  <b style={{ color: "var(--fg)" }}>Hot lead routed to agent</b>
+                  <b style={{ color: "var(--fg)" }}>Demo: enquiry routed to an agent</b>
                   <br />
-                  Budget confirmed · Move-in &lt; 90 days · Viewing requested
+                  Budget stated · Area and unit type captured · Viewing requested
                 </div>
               </div>
             </div>

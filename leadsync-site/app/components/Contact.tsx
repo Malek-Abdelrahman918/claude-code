@@ -67,7 +67,7 @@ export default function Contact() {
             </div>
             <div className="field">
               <label htmlFor="business">What does your business do?</label>
-              <input id="business" name="business" type="text" placeholder="Real estate brokerage in Dubai" />
+              <input id="business" name="business" type="text" placeholder="Real estate agency in New Cairo" />
             </div>
             <div className="field">
               <label htmlFor="task">What&apos;s the most repetitive task on your team?</label>

@@ -66,8 +66,8 @@ export default function Services() {
           <span className="overline">Services</span>
           <h2>If it&apos;s repetitive, it&apos;s automatable.</h2>
           <p>
-            A non-exhaustive list of what I&apos;ve built. Yours doesn&apos;t
-            have to be on it — most projects are bespoke.
+            A non-exhaustive list of what I can build for your agency. Yours
+            doesn&apos;t have to be on it — most projects are bespoke.
           </p>
         </div>
         <div className="services">

@@ -6,18 +6,19 @@ export default function Hero() {
       <div className="container inner">
         <span className="eyebrow">
           <span className="dot" />
-          Booking projects for Q3
+          Real Estate Automation Systems
         </span>
 
         <h1>
-          Automate the boring half of your business.{" "}
+          Automate the boring half of your agency.{" "}
           <span className="grad">Ship it in weeks.</span>
         </h1>
 
         <p className="sub">
-          Custom AI workflows for lead handling, sales, support, and ops. Built
-          one client at a time on n8n, OpenAI, Claude, and the APIs you already
-          use.
+          Custom AI workflows for Egyptian real estate agencies. LeadSync
+          qualifies incoming enquiries, organizes prospect information, and
+          routes promising leads to the right agent, built on n8n, OpenAI,
+          Claude, and the tools you already use.
         </p>
 
         <div className="cta-row">
@@ -26,16 +27,16 @@ export default function Hero() {
             <ArrowRight size={18} className="arrow" />
           </a>
           <a className="btn btn--ghost btn--lg" href="#work">
-            See a case study
+            See an example
           </a>
         </div>
 
         <div className="trust">
           <span>
-            <b>Built for</b> agencies, SaaS, e-commerce, real estate
+            <b>Built for</b> real estate agencies in Egypt
           </span>
           <span className="dot" />
-          <span>Dubai · US · EU · global</span>
+          <span>Sheikh Zayed · 6th of October · New Cairo</span>
           <span className="dot" />
           <span>Pricing per project</span>
         </div>

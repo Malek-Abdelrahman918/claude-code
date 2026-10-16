@@ -47,7 +47,7 @@ export default function Footer() {
 
         <div className="legal">
           <span>© 2026 LeadSync. Built by Malek Abdelrahman.</span>
-          <span>Booking projects globally · Based in Dubai</span>
+          <span>Automation for Egyptian real estate agencies · Based in Egypt</span>
         </div>
       </div>
     </footer>

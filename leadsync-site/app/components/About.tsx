@@ -4,7 +4,7 @@ export default function About() {
       <div className="container">
         <div className="section-head">
           <span className="overline">About</span>
-          <h2>Built by one engineer who actually ships.</h2>
+          <h2>Built by one engineer, focused on real estate.</h2>
         </div>
 
         <div className="about-card">
@@ -13,14 +13,14 @@ export default function About() {
             <h3>Malek Abdelrahman</h3>
             <div className="role">Founder · LeadSync</div>
             <p>
-              I started LeadSync to do one thing — build the AI automations that
-              small teams actually need, instead of selling them another platform
-              they&apos;ll have to babysit. Background&apos;s in engineering;
-              the last few months have been building real workflows for real
-              clients on n8n, Claude, and the APIs that already run their
-              business. If your team is doing the same five tasks every day, I
-              can probably fix that — and I&apos;ll stay until it&apos;s
-              invisible.
+              I started LeadSync to build the AI automations that small real
+              estate teams in Egypt actually need, instead of selling them
+              another platform they&apos;ll have to babysit. My background is
+              in engineering, and I&apos;m building a working WhatsApp
+              lead-qualification prototype on n8n, Claude, and OpenAI. LeadSync
+              is early-stage: I&apos;m starting with agencies in Sheikh Zayed,
+              6th of October, and New Cairo, and I&apos;ll scope every project
+              honestly before we begin.
             </p>
           </div>
         </div>
