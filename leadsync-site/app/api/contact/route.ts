@@ -1,8 +1,15 @@
 import { Resend } from "resend";
 import { NextResponse } from "next/server";
 
-const RECIPIENT = "malekabdelrahmanco@gmail.com";
-const FROM = "LeadSync Contact <onboarding@resend.dev>";
+// Where lead notifications go, and the address they are sent from. Both can be changed in
+// Vercel without touching code (server-only variables; no NEXT_PUBLIC_ prefix):
+//   LEAD_NOTIFY_EMAIL   e.g. outreach@useleadsync.com
+//   RESEND_FROM_EMAIL   e.g. LeadSync <outreach@useleadsync.com>
+// Resend's shared test sender (onboarding@resend.dev, the default below) can only deliver to the
+// email on your own Resend account. To notify any other address, first verify the domain in
+// Resend and set RESEND_FROM_EMAIL to an address on it; otherwise Resend refuses the send.
+const RECIPIENT = process.env.LEAD_NOTIFY_EMAIL?.trim() || "malekabdelrahmanco@gmail.com";
+const FROM = process.env.RESEND_FROM_EMAIL?.trim() || "LeadSync Contact <onboarding@resend.dev>";
 
 const MAX_BODY_BYTES = 10_000;
 const LIMITS = { name: 100, email: 254, business: 200, task: 2000 } as const;
