@@ -1,11 +1,11 @@
-const deliverables = [
+export const deliverables = [
   "A review of how your team handles customers, requests and repeat work.",
   "A shortlist of bottlenecks worth fixing, ranked by value and effort.",
   "A practical plan with scope, tools and how success will be judged.",
   "A clear view of what is not worth automating.",
 ];
 
-const others = [
+export const others = [
   { h: "Customer and enquiry handling", p: "Capture, qualify and route enquiries from WhatsApp, forms and email, so the right person follows up with context." },
   { h: "Customer-support assistants", p: "First-line replies and triage on WhatsApp, web chat or email, escalating to your team with context." },
   { h: "Sales follow-up and workflow automation", p: "Reminders, sequences and handovers, so leads and customers are not forgotten." },
@@ -20,7 +20,7 @@ export default function Services() {
     <section id="services" className="section on-dark" aria-labelledby="services-title">
       <div className="wrap">
         <p className="eyebrow">
-          <span className="eyebrow__idx">–</span>
+          <span className="eyebrow__idx">02</span>
           <span>Services</span>
         </p>
 

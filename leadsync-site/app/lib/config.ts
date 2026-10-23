@@ -8,10 +8,8 @@
 // NEXT_PUBLIC_* values are public by design (they ship to the browser) and are
 // read at build time, so redeploy after changing them. None of them is a secret.
 
-/** Every primary "Book a Discovery Call" button points here. */
-export const BOOKING_ANCHOR = "#book";
-/** The secondary "Watch How It Works" button points here. */
-export const VSL_ANCHOR = "#vsl";
+/** Every primary "Book a Discovery Call" button points here (the dedicated booking page). */
+export const BOOKING_PATH = "/book";
 
 /** Fallback contact routes shown if online booking is unavailable. */
 export const CONTACT_EMAIL = "hi@leadsync.dev";

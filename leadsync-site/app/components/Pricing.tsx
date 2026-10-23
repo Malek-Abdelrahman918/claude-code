@@ -1,5 +1,6 @@
+import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { BOOKING_ANCHOR } from "../lib/config";
+import { BOOKING_PATH } from "../lib/config";
 
 const included = [
   "Discovery and problem assessment",
@@ -12,10 +13,10 @@ const included = [
 
 export default function Pricing() {
   return (
-    <section id="pricing" className="section on-dark" aria-labelledby="pricing-title">
+    <section id="pricing" className="section on-light" aria-labelledby="pricing-title">
       <div className="wrap">
         <p className="eyebrow">
-          <span className="eyebrow__idx">06</span>
+          <span className="eyebrow__idx">03</span>
           <span>Pricing</span>
         </p>
 
@@ -44,9 +45,9 @@ export default function Pricing() {
                 </li>
               ))}
             </ul>
-            <a className="btn btn--lg" href={BOOKING_ANCHOR}>
+            <Link className="btn btn--lg" href={BOOKING_PATH}>
               Book a Discovery Call <ArrowRight size={18} className="arrow" aria-hidden="true" />
-            </a>
+            </Link>
           </div>
         </div>
       </div>

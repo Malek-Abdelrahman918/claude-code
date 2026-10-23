@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 
 type Status = "idle" | "loading" | "success" | "error";
@@ -68,7 +69,7 @@ export default function Contact() {
     <section id="contact" className="section on-dark" aria-labelledby="contact-title">
       <div className="wrap">
         <p className="eyebrow">
-          <span className="eyebrow__idx">09</span>
+          <span className="eyebrow__idx">02</span>
           <span>Contact</span>
         </p>
 
@@ -80,7 +81,7 @@ export default function Contact() {
               </h2>
               <p className="lede">
                 Not ready to book a call? Send a question and I’ll reply by email. To book a
-                discovery call, use the form above.
+                discovery call, use the <Link href="/book">booking page</Link>.
               </p>
             </div>
 

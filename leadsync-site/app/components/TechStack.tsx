@@ -15,12 +15,12 @@ const tools = [
 
 export default function TechStack() {
   return (
-    <section id="stack" className="section section--tight on-light" aria-labelledby="stack-title">
+    <section id="stack" className="section section--compact on-light" aria-labelledby="stack-title">
       <div className="wrap">
         <div className="stack">
           <div>
             <p className="tag" style={{ color: "var(--acc)" }}>
-              05 · Stack
+              03 · Stack
             </p>
             <h2 id="stack-title" className="h3">
               Tools I work with.

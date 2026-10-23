@@ -3,7 +3,7 @@ export default function About() {
     <section id="about" className="section about on-light" aria-labelledby="about-title">
       <div className="wrap">
         <p className="eyebrow">
-          <span className="eyebrow__idx">07</span>
+          <span className="eyebrow__idx">01</span>
           <span>About</span>
         </p>
 

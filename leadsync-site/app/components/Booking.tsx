@@ -293,14 +293,14 @@ export default function Booking() {
     <section id="book" className="section on-light" aria-labelledby="book-title">
       <div className="wrap">
         <p className="eyebrow">
-          <span className="eyebrow__idx">08</span>
+          <span className="eyebrow__idx">01</span>
           <span>Book a discovery call</span>
         </p>
 
         <div className="shead">
-          <h2 id="book-title" className="h2">
+          <h1 id="book-title" className="h2">
             Share a few details, <span className="serif">then pick a time.</span>
-          </h2>
+          </h1>
           <p className="lede">
             A short form helps make the call useful for both sides. Once it’s sent, you can choose a
             time that suits you.

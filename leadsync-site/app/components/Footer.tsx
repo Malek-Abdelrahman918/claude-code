@@ -1,4 +1,6 @@
+import Link from "next/link";
 import Logo from "./Logo";
+import { BOOKING_PATH } from "../lib/config";
 
 export default function Footer() {
   return (
@@ -13,23 +15,25 @@ export default function Footer() {
             </p>
           </div>
 
-          <nav aria-label="Services">
-            <h2>Services</h2>
+          <nav aria-label="Pages">
+            <h2>Pages</h2>
             <ul>
-              <li><a href="#services">Opportunity assessment</a></li>
-              <li><a href="#services">Customer handling</a></li>
-              <li><a href="#services">Internal operations</a></li>
-              <li><a href="#services">Systems integration</a></li>
+              <li><Link href="/">Home</Link></li>
+              <li><Link href="/services">Services</Link></li>
+              <li><Link href="/work">Work</Link></li>
+              <li><Link href="/process">Process</Link></li>
+              <li><Link href="/about">About</Link></li>
+              <li><Link href={BOOKING_PATH}>Book a call</Link></li>
             </ul>
           </nav>
 
-          <nav aria-label="Company">
-            <h2>Company</h2>
+          <nav aria-label="Services">
+            <h2>Services</h2>
             <ul>
-              <li><a href="#about">About</a></li>
-              <li><a href="#work">Demo</a></li>
-              <li><a href="#pricing">Pricing</a></li>
-              <li><a href="#contact">Contact</a></li>
+              <li><Link href="/services">Opportunity assessment</Link></li>
+              <li><Link href="/services">Customer handling</Link></li>
+              <li><Link href="/services">Internal operations</Link></li>
+              <li><Link href="/services">Systems integration</Link></li>
             </ul>
           </nav>
 
@@ -47,6 +51,7 @@ export default function Footer() {
                 </a>
               </li>
               <li><a href="mailto:hi@leadsync.dev">Email</a></li>
+              <li><Link href="/about#contact">Contact form</Link></li>
             </ul>
           </nav>
         </div>

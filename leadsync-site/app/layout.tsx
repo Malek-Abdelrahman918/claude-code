@@ -6,6 +6,8 @@ import {
   IBM_Plex_Sans_Arabic,
 } from "next/font/google";
 import "./globals.css";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
 const sans = Instrument_Sans({ subsets: ["latin"], variable: "--font-sans", display: "swap" });
 const serif = Instrument_Serif({
@@ -30,7 +32,10 @@ const arabic = IBM_Plex_Sans_Arabic({
 });
 
 export const metadata: Metadata = {
-  title: "LeadSync — AI implementation consultancy",
+  title: {
+    default: "LeadSync — AI implementation consultancy",
+    template: "%s | LeadSync",
+  },
   description:
     "LeadSync helps businesses identify operational bottlenecks and implement practical AI-powered systems that improve efficiency, customer handling and internal processes.",
 };
@@ -49,7 +54,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <a className="skip-link" href="#main">
           Skip to content
         </a>
-        {children}
+        <Navbar />
+        <main id="main">{children}</main>
+        <Footer />
       </body>
     </html>
   );

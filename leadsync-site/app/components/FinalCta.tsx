@@ -1,5 +1,6 @@
+import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { BOOKING_ANCHOR } from "../lib/config";
+import { BOOKING_PATH } from "../lib/config";
 
 export default function FinalCta() {
   return (
@@ -13,9 +14,9 @@ export default function FinalCta() {
             Book a discovery call to discuss your operations, identify potential opportunities, and
             determine whether LeadSync is a good fit.
           </p>
-          <a className="btn btn--lg" href={BOOKING_ANCHOR}>
+          <Link className="btn btn--lg" href={BOOKING_PATH}>
             Book a Discovery Call <ArrowRight size={18} className="arrow" aria-hidden="true" />
-          </a>
+          </Link>
         </div>
       </div>
     </section>

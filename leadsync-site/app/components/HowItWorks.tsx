@@ -1,4 +1,4 @@
-const steps = [
+export const steps = [
   {
     num: "Step 01",
     h: "Assess",
@@ -30,7 +30,7 @@ export default function HowItWorks() {
     <section id="how" className="section on-light" aria-labelledby="how-title">
       <div className="wrap">
         <p className="eyebrow">
-          <span className="eyebrow__idx">04</span>
+          <span className="eyebrow__idx">01</span>
           <span>Process</span>
         </p>
 

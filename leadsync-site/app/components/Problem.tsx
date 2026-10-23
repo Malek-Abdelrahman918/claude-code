@@ -1,4 +1,4 @@
-const pains = [
+export const pains = [
   {
     num: "01",
     h: "Repetitive manual data entry.",
