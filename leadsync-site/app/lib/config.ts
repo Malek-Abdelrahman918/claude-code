@@ -12,7 +12,7 @@
 export const BOOKING_PATH = "/book";
 
 /** Fallback contact routes shown if online booking is unavailable. */
-export const CONTACT_EMAIL = "hi@leadsync.dev";
+export const CONTACT_EMAIL = "Outreach@useleadsync.com";
 export const WHATSAPP_URL = "https://wa.me/201142339381";
 
 function parseHttps(raw: string | undefined): URL | null {

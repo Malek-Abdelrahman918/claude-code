@@ -158,9 +158,9 @@ export default function Contact() {
                 </a>
               </li>
               <li>
-                <a className="channel" href="mailto:hi@leadsync.dev">
+                <a className="channel" href="mailto:Outreach@useleadsync.com">
                   <span className="tag">Email</span>
-                  <span className="channel__value">hi@leadsync.dev</span>
+                  <span className="channel__value">Outreach@useleadsync.com</span>
                   <ArrowUpRight size={20} className="arrow" aria-hidden="true" />
                 </a>
               </li>

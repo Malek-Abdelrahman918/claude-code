@@ -50,7 +50,7 @@ export default function Footer() {
                   WhatsApp
                 </a>
               </li>
-              <li><a href="mailto:hi@leadsync.dev">Email</a></li>
+              <li><a href="mailto:Outreach@useleadsync.com">Email</a></li>
               <li><Link href="/about#contact">Contact form</Link></li>
             </ul>
           </nav>
