@@ -2039,3 +2039,18 @@ a {
     height: 900px;
   }
 }
+
+/* =============================================================================
+   Route transitions (app/template.tsx). Opacity and transform only, so the layout never moves.
+   ============================================================================= */
+@keyframes route-enter {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .route-enter {
+    animation: route-enter 260ms var(--ease) backwards;
+  }
+}
