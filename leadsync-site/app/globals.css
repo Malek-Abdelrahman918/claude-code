@@ -2026,3 +2026,16 @@ a {
     grid-template-columns: 1fr;
   }
 }
+
+/* Calendly sizes its embedded frame as height:100%, which only works when the container has a
+   definite height (a min-height alone collapses the frame to ~150px). Narrower screens get a
+   taller box because Calendly stacks its layout in one column there. */
+.calendly-host {
+  height: 700px;
+  min-width: 320px;
+}
+@media (max-width: 1000px) {
+  .calendly-host {
+    height: 900px;
+  }
+}
