@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Logo from "./Logo";
+import CookieSettingsButton from "./CookieSettingsButton";
 import { BOOKING_PATH } from "../lib/config";
 
 export default function Footer() {
@@ -59,6 +60,7 @@ export default function Footer() {
         <div className="legal">
           <span>© 2026 LeadSync. Built by Malek Abdelrahman.</span>
           <span>AI implementation consultancy · Based in Egypt</span>
+          <CookieSettingsButton />
         </div>
       </div>
     </footer>

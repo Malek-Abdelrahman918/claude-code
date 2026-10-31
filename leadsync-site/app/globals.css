@@ -2054,3 +2054,54 @@ a {
     animation: route-enter 260ms var(--ease) backwards;
   }
 }
+
+/* Cookie notice (Meta Pixel consent). Fixed and compact so it never shifts the page. */
+.consent {
+  position: fixed;
+  z-index: 90;
+  left: 16px;
+  right: 16px;
+  bottom: 16px;
+  max-width: 560px;
+  display: flex;
+  align-items: center;
+  gap: 14px 20px;
+  flex-wrap: wrap;
+  padding: 16px 18px;
+  background: var(--ink-2);
+  color: var(--text-d);
+  border: 1px solid var(--line-d-strong);
+  border-radius: 8px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+}
+.consent__text {
+  flex: 1 1 260px;
+  margin: 0;
+  font-size: 0.8125rem;
+  line-height: 1.55;
+  color: var(--muted-d);
+}
+.consent__actions {
+  display: flex;
+  gap: 10px;
+}
+@media (min-width: 640px) {
+  .consent {
+    left: 24px;
+    right: auto;
+    bottom: 24px;
+  }
+}
+.legal__link {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+.legal__link:hover {
+  color: var(--fg);
+}

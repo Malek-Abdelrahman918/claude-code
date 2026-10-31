@@ -5,6 +5,7 @@
 //   NEXT_PUBLIC_VSL_EMBED_URL   embed URL from YouTube / Vimeo / Loom / Wistia
 //   NEXT_PUBLIC_VSL_VIDEO_URL   direct https link to an .mp4/.webm file you host
 //   NEXT_PUBLIC_VSL_POSTER_URL  optional poster image for a direct video file
+//   NEXT_PUBLIC_META_PIXEL_ID   your Meta (Facebook) Pixel ID, digits only
 // NEXT_PUBLIC_* values are public by design (they ship to the browser) and are
 // read at build time, so redeploy after changing them. None of them is a secret.
 
@@ -62,3 +63,23 @@ export const CALENDLY_URL = parseCalendlyUrl(process.env.NEXT_PUBLIC_CALENDLY_UR
 export const VSL_EMBED_URL = parseVslEmbedUrl(process.env.NEXT_PUBLIC_VSL_EMBED_URL);
 export const VSL_VIDEO_URL = parseVslFileUrl(process.env.NEXT_PUBLIC_VSL_VIDEO_URL);
 export const VSL_POSTER_URL = parseVslFileUrl(process.env.NEXT_PUBLIC_VSL_POSTER_URL);
+
+/** Meta Pixel ID: digits only. Unset or malformed means the Pixel and its consent notice are off. */
+function parsePixelId(raw: string | undefined): string | null {
+  const id = raw?.trim() ?? "";
+  return /^\d{8,20}$/.test(id) ? id : null;
+}
+export const META_PIXEL_ID = parsePixelId(process.env.NEXT_PUBLIC_META_PIXEL_ID);
+
+/**
+ * The Pixel only ever runs on the real website, never on Vercel previews or localhost, so test
+ * visits can't pollute your ad data. Add a host here if you add another production domain.
+ */
+const PIXEL_HOSTS = new Set(["useleadsync.com", "www.useleadsync.com"]);
+export function isPixelHost(hostname: string): boolean {
+  return PIXEL_HOSTS.has(hostname.toLowerCase());
+}
+
+/** Storage key and event shared by the consent notice and the footer "Cookie settings" button. */
+export const CONSENT_KEY = "leadsync-consent-v1";
+export const CONSENT_REOPEN_EVENT = "leadsync:cookie-settings";
