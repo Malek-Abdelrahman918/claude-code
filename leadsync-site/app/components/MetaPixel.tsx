@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { CONSENT_KEY, CONSENT_REOPEN_EVENT, META_PIXEL_ID, isPixelHost } from "../lib/config";
 
@@ -122,7 +123,8 @@ export default function MetaPixel() {
     <div className="consent on-dark" role="region" aria-label="Cookie notice">
       <p className="consent__text" id="consent-text">
         We’d like to use Meta’s advertising pixel to measure how our ads perform. It stays off unless you
-        accept, and you can change your mind any time from “Cookie settings” in the footer.
+        accept, and you can change your mind any time from “Cookie settings” in the footer.{" "}
+        <Link href="/privacy#cookies">Privacy policy</Link>
       </p>
       <div className="consent__actions">
         <button type="button" className="btn btn--sm" onClick={() => decide("granted")}>

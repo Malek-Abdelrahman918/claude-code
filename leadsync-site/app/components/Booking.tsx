@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { CALENDLY_URL, CONTACT_EMAIL, WHATSAPP_URL } from "../lib/config";
 import {
@@ -443,7 +444,7 @@ export default function Booking() {
                 Privacy notice: your answers are sent to LeadSync by email and used only to assess your
                 enquiry and arrange a call. If you then book a time, Calendly also processes your name,
                 email and chosen time under its own privacy policy. Please don’t include sensitive
-                personal information. To ask for your details to be corrected or deleted, email {CONTACT_EMAIL}.
+                personal information. See our <Link href="/privacy">privacy policy</Link> for details. To ask for your details to be corrected or deleted, email {CONTACT_EMAIL}.
               </p>
             </div>
 

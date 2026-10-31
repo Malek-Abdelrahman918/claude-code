@@ -135,6 +135,11 @@ export default function Contact() {
                 )}
               </div>
 
+              <p className="small">
+                Your details are emailed to LeadSync and used only to reply to you. See the{" "}
+                <Link href="/privacy">privacy policy</Link>.
+              </p>
+
               <button
                 className="btn btn--lg"
                 type="submit"

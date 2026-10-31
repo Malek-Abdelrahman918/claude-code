@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import VslEmbed from "./VslEmbed";
 import { BOOKING_PATH, VSL_EMBED_URL, VSL_POSTER_URL, VSL_VIDEO_URL } from "../lib/config";
 
 // The video is chosen from environment variables (see app/lib/config.ts):
@@ -15,14 +16,7 @@ export default function Vsl() {
 
       <div className="vsl__frame">
         {VSL_EMBED_URL ? (
-          <iframe
-            src={VSL_EMBED_URL}
-            title="LeadSync overview video"
-            loading="lazy"
-            allow="fullscreen; picture-in-picture"
-            allowFullScreen
-            referrerPolicy="strict-origin-when-cross-origin"
-          />
+          <VslEmbed src={VSL_EMBED_URL} />
         ) : VSL_VIDEO_URL ? (
           <video
             controls

@@ -60,6 +60,7 @@ export default function Footer() {
         <div className="legal">
           <span>© 2026 LeadSync. Built by Malek Abdelrahman.</span>
           <span>AI implementation consultancy · Based in Egypt</span>
+          <Link className="legal__link" href="/privacy">Privacy policy</Link>
           <CookieSettingsButton />
         </div>
       </div>
