@@ -7,21 +7,23 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap">
 <style>
-/* Layout concept: a calm private-clinic site. Cinematic photo hero, then light, generous editorial
-   sections; one deep clinical teal; a single institutional typeface carried by weight and size.
-   Single committed light look with one dark band (not theme-switched). */
+/* Layout concept: a calm private-clinic site that commits. Cinematic photo hero, editorial service rows
+   that alternate sides, one full teal band as the peak of the scroll. One institutional typeface,
+   carried by weight and size. Single committed light look with dark and teal bands (not theme-switched). */
 :root {
-  --ink: #0f1a1c;          /* deep blue-charcoal for text and the dark band */
+  --ink: #0f1a1c;
   --ink-2: #172426;
-  --paper: #f8f7f4;        /* main background */
-  --mist: #eef2f1;         /* alternate light band */
-  --teal: #1d6a65;         /* primary: buttons, links, emphasis */
+  --paper: #f8f7f4;
+  --mist: #eef2f1;
+  --teal: #1d6a65;
   --teal-deep: #154f4b;
-  --teal-soft: #9bd3cb;    /* teal on dark backgrounds */
-  --text-2: #526260;       /* secondary text on light */
-  --text-3: #a9b7b5;       /* secondary text on dark */
+  --teal-soft: #9bd3cb;
+  --text-2: #526260;
+  --text-3: #a9b7b5;
+  --on-teal: rgba(255, 255, 255, 0.86);
   --line: rgba(15, 26, 28, 0.12);
   --line-d: rgba(248, 247, 244, 0.14);
+  --line-t: rgba(255, 255, 255, 0.24);
 
   --font: "IBM Plex Sans Arabic", "Segoe UI", Tahoma, sans-serif;
 
@@ -34,30 +36,35 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: 110px; }
+html { scroll-behavior: smooth; scroll-padding-top: 110px; scrollbar-color: var(--teal) var(--mist); }
 body {
   margin: 0; background: var(--paper); color: var(--ink);
   font-family: var(--font); font-size: 17px; line-height: 1.9; font-weight: 400;
-  overflow-x: clip; -webkit-font-smoothing: antialiased;
+  overflow-x: clip; -webkit-font-smoothing: antialiased; caret-color: var(--teal);
 }
+::selection { background: var(--teal); color: #fff; }
+::-webkit-scrollbar { width: 11px; }
+::-webkit-scrollbar-track { background: var(--mist); }
+::-webkit-scrollbar-thumb { background: var(--teal); border-radius: 8px; border: 3px solid var(--mist); }
 body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 60; background: var(--ink); }
 h1, h2, h3, h4, p, ul, ol, figure, dl, dd { margin: 0; }
 ul, ol { list-style: none; padding: 0; }
 img { display: block; max-width: 100%; }
 a { color: inherit; text-decoration: none; }
 :focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; border-radius: 4px; }
+.journey :focus-visible, .why :focus-visible, .ftr :focus-visible, .hero :focus-visible { outline-color: var(--teal-soft); }
 
 .wrap { width: 100%; max-width: calc(var(--max) + 96px); margin-inline: auto; padding-left: max(var(--gut-l), 4vw); padding-right: max(var(--gut-r), 4vw); }
-.sec { padding-block: clamp(80px, 9vw, 136px); }
+.sec { padding-block: clamp(88px, 10vw, 152px); }
 
-.eyebrow { display: block; font-size: 15px; font-weight: 600; color: var(--teal); margin-bottom: 14px; }
-.h2 { font-weight: 600; font-size: clamp(30px, 3.5vw, 48px); line-height: 1.35; letter-spacing: -0.005em; text-wrap: balance; }
-.lead { font-size: 19px; line-height: 1.9; color: var(--text-2); }
+.h2 { font-weight: 700; font-size: clamp(34px, 4.4vw, 64px); line-height: 1.3; letter-spacing: -0.01em; text-wrap: balance; }
+.h2 .soft { font-weight: 300; }
+.lead { font-size: clamp(17.5px, 1.4vw, 20px); line-height: 1.9; color: var(--text-2); max-width: 36rem; }
 
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 10px;
-  min-height: 54px; padding: 0 28px; border-radius: var(--r); border: 1px solid transparent;
-  font-family: var(--font); font-weight: 500; font-size: 16.5px; line-height: 1; white-space: nowrap;
+  min-height: 56px; padding: 0 30px; border-radius: var(--r); border: 1px solid transparent;
+  font-family: var(--font); font-weight: 600; font-size: 16.5px; line-height: 1; white-space: nowrap;
   transition: background-color .25s var(--ease), border-color .25s var(--ease), color .25s var(--ease);
 }
 .btn-p { background: var(--teal); color: #fff; }
@@ -95,91 +102,102 @@ a { color: inherit; text-decoration: none; }
 .menu-open .burger i::before { transform: translateY(3.75px) rotate(45deg); }
 .menu-open .burger i::after { transform: translateY(-3.75px) rotate(-45deg); }
 .drawer { position: fixed; inset: calc(112px + env(safe-area-inset-top, 0px)) 0 0; z-index: 49; background: var(--paper); padding-block: 16px 40px; padding-left: var(--gut-l); padding-right: var(--gut-r); overflow-y: auto; }
-.drawer a.dl { display: block; padding: 16px 0; border-bottom: 1px solid var(--line); font-weight: 500; font-size: 22px; }
+.drawer a.dl { display: block; padding: 16px 0; border-bottom: 1px solid var(--line); font-weight: 600; font-size: 24px; }
 .drawer .btn { width: 100%; margin-top: 28px; }
 
-/* ---------- Hero ---------- */
-.hero { position: relative; min-height: min(94svh, 900px); display: flex; flex-direction: column; justify-content: flex-end; color: #fff; overflow: hidden; isolation: isolate; }
+/* ---------- Hero: the one authored moment ---------- */
+.hero { position: relative; min-height: min(100svh, 960px); display: flex; flex-direction: column; justify-content: flex-end; color: #fff; overflow: hidden; isolation: isolate; }
 .hero-img { position: absolute; inset: 0; z-index: -2; }
-.hero-img img { width: 100%; height: 100%; object-fit: cover; object-position: 22% 50%; animation: settle 14s ease-out both; }
+.hero-img img { width: 100%; height: 100%; object-fit: cover; object-position: 22% 50%; animation: settle 16s var(--ease) both; }
 .hero::before { content: ""; position: absolute; inset: 0; z-index: -1;
   background:
-    linear-gradient(to left, rgba(15,26,28,.92) 0%, rgba(15,26,28,.8) 38%, rgba(15,26,28,.25) 66%, rgba(15,26,28,.08) 100%),
-    linear-gradient(to top, rgba(15,26,28,.85) 0%, rgba(15,26,28,0) 34%); }
-.hero-copy { padding-top: 190px; padding-bottom: 64px; }
-.hero .eyebrow { color: var(--teal-soft); font-weight: 500; }
-.hero h1 { font-weight: 600; font-size: clamp(40px, 5.4vw, 78px); line-height: 1.25; max-width: 12em; text-wrap: balance; }
+    linear-gradient(to left, rgba(15,26,28,.93) 0%, rgba(15,26,28,.82) 42%, rgba(15,26,28,.25) 70%, rgba(15,26,28,.06) 100%),
+    linear-gradient(to top, rgba(15,26,28,.88) 0%, rgba(15,26,28,0) 36%); }
+.hero-copy { padding-top: 200px; padding-bottom: 72px; }
+.hero h1 { font-weight: 700; font-size: clamp(46px, 6.6vw, 96px); line-height: 1.18; letter-spacing: -0.015em; }
+.hero h1 .ln { display: block; }
+.hero h1 .ln > span { display: inline-block; animation: wipe 1.3s var(--ease) both; }
+.hero h1 .ln + .ln > span { animation-delay: .18s; }
 .hero h1 em { font-style: normal; color: var(--teal-soft); }
-.hero p.sub { margin-top: 22px; max-width: 34rem; font-size: clamp(17px, 1.35vw, 19.5px); line-height: 1.9; color: rgba(255,255,255,.86); font-weight: 300; }
-.hero-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 34px; }
-.facts { background: rgba(15, 26, 28, .55); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); border-top: 1px solid var(--line-d); }
+.hero p.sub { margin-top: 26px; max-width: 34rem; font-size: clamp(17px, 1.4vw, 20px); line-height: 1.9; color: rgba(255,255,255,.86); font-weight: 300; animation: fade 1.2s var(--ease) .45s both; }
+.hero-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 36px; animation: fade 1.2s var(--ease) .6s both; }
+.facts { background: rgba(15, 26, 28, .8); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); border-top: 1px solid var(--line-d); }
 .facts ul { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .facts li { display: flex; align-items: center; gap: 14px; padding-block: 22px; padding-inline-end: 20px; }
 .facts li + li { border-inline-start: 1px solid var(--line-d); padding-inline-start: 26px; }
 .facts svg { width: 26px; height: 26px; flex: none; stroke: var(--teal-soft); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
-.facts small { display: block; font-size: 13px; color: var(--text-3); line-height: 1.5; }
+.facts small { display: block; font-size: 13px; color: #c3cfcd; line-height: 1.5; }
 .facts b { display: block; font-weight: 500; font-size: 16.5px; line-height: 1.5; }
-@keyframes settle { from { transform: scale(1.07); } to { transform: scale(1); } }
+@keyframes settle { from { transform: scale(1.08); } to { transform: scale(1); } }
+/* Lines start visible, slightly soft, and come into focus in reading order. */
+@keyframes wipe { from { filter: blur(6px); transform: translateY(12px); } to { filter: none; transform: none; } }
+@keyframes fade { from { transform: translateY(12px); } to { transform: none; } }
 
 /* ---------- About ---------- */
-.about .wrap { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); gap: clamp(40px, 6vw, 96px); align-items: center; }
-.about .lead { margin-top: 22px; }
-.about p.more { margin-top: 18px; color: var(--text-2); }
-.doctor { margin-top: 36px; display: flex; gap: 18px; align-items: flex-start; padding: 22px 24px; background: #fff; border: 1px solid var(--line); border-radius: var(--r); }
+.about .wrap { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(40px, 6vw, 96px); align-items: center; }
+.about .lead { margin-top: 24px; }
+.about p.more { margin-top: 18px; color: var(--text-2); max-width: 36rem; }
+.doctor { margin-top: 40px; display: flex; gap: 18px; align-items: flex-start; padding: 22px 24px; background: #fff; border: 1px solid var(--line); border-radius: 12px; max-width: 36rem; }
 .doctor .mono { width: 56px; height: 56px; border-radius: 50%; background: var(--mist); color: var(--teal); display: grid; place-items: center; font-weight: 700; font-size: 22px; flex: none; }
-.doctor h3 { font-weight: 600; font-size: 20px; line-height: 1.4; }
+.doctor h3 { font-weight: 700; font-size: 21px; line-height: 1.4; }
 .doctor p { font-size: 15px; color: var(--text-2); line-height: 1.7; }
 .doctor .pend { margin-top: 6px; font-size: 13.5px; }
-.about-media { position: relative; }
-.about-media img { width: 100%; height: auto; aspect-ratio: 5 / 4; object-fit: cover; border-radius: var(--r); }
-.about-media figcaption { position: absolute; inset-inline-start: 20px; bottom: 20px; background: rgba(248,247,244,.94); padding: 12px 16px; border-radius: 6px; font-size: 14px; font-weight: 500; }
+.about-media { position: relative; margin-inline-end: calc(-1 * max(var(--gut-l), 4vw)); }
+.about-media img { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; border-start-start-radius: var(--r); border-end-start-radius: var(--r); }
+.about-media figcaption { position: absolute; inset-inline-start: 22px; bottom: 22px; background: rgba(248,247,244,.95); padding: 12px 16px; border-radius: 6px; font-size: 14px; font-weight: 500; }
 
-/* ---------- Services ---------- */
+/* ---------- Services: editorial rows ---------- */
 .services { background: var(--mist); }
-.sec-head { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: 20px 64px; align-items: end; margin-bottom: clamp(44px, 5vw, 64px); }
-.sec-head .lead { font-size: 17.5px; }
-.svc-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(40px, 4vw, 56px) clamp(28px, 3.5vw, 48px); }
-.svc figure { overflow: hidden; border-radius: var(--r); aspect-ratio: 16 / 10; background: var(--ink-2); }
-.svc img { width: 100%; height: 100%; object-fit: cover; }
+.sec-head { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 20px 64px; align-items: end; margin-bottom: clamp(56px, 6vw, 88px); }
+.svc-list { display: grid; gap: clamp(64px, 8vw, 120px); }
+.svc { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(28px, 5vw, 80px); align-items: center; }
+.svc:nth-child(even) figure { order: 2; }
+.svc figure { overflow: hidden; border-radius: var(--r); aspect-ratio: 4 / 3; background: var(--ink-2); }
+.svc:nth-child(even) { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); }
+.svc:nth-child(even) figure { aspect-ratio: 5 / 4; }
+.svc img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--ease); }
+.svc:hover img { transform: scale(1.03); }
 .svc .s1 img { object-position: 50% 30%; }
 .svc .s2 img { object-position: 50% 28%; }
 .svc .s3 img { object-position: 50% 35%; }
 .svc .s4 img { object-position: 50% 40%; }
-.svc h3 { margin-top: 22px; font-weight: 600; font-size: 24px; line-height: 1.45; }
-.svc p { margin-top: 8px; color: var(--text-2); max-width: 32rem; }
-.svc-note { margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--line); font-size: 15px; color: var(--text-2); }
+.svc h3 { font-weight: 700; font-size: clamp(30px, 3.4vw, 50px); line-height: 1.25; letter-spacing: -0.01em; text-wrap: balance; }
+.svc p { margin-top: 16px; color: var(--text-2); font-size: clamp(16.5px, 1.3vw, 18.5px); max-width: 30rem; }
+.svc a.go { display: inline-flex; align-items: center; gap: 10px; margin-top: 26px; font-weight: 600; color: var(--teal); border-bottom: 1.5px solid currentColor; padding-bottom: 3px; transition: gap .3s var(--ease), color .25s; }
+.svc a.go:hover { gap: 16px; color: var(--teal-deep); }
+.svc-note { margin-top: clamp(64px, 7vw, 96px); padding-top: 26px; border-top: 1px solid var(--line); font-size: 16px; color: var(--text-2); }
 
-/* ---------- Why ---------- */
-.why .wrap { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(40px, 6vw, 96px); align-items: start; }
-.why .lead { margin-top: 20px; }
-.why-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px 40px; }
-.why-list li { padding-top: 22px; border-top: 1px solid var(--line); }
-.why-list svg { width: 30px; height: 30px; stroke: var(--teal); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; margin-bottom: 14px; }
-.why-list h3 { font-weight: 600; font-size: 20px; line-height: 1.45; }
-.why-list p { margin-top: 6px; font-size: 16px; color: var(--text-2); line-height: 1.8; }
+/* ---------- Why: the teal band, peak of the scroll ---------- */
+.why { background: var(--teal); color: #fff; }
+.why .big { font-weight: 700; font-size: clamp(44px, 6.4vw, 96px); line-height: 1.15; letter-spacing: -0.02em; max-width: 13em; text-wrap: balance; }
+.why .big .soft { font-weight: 300; display: block; }
+.why-list { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 40px; margin-top: clamp(64px, 7vw, 104px); }
+.why-list div { border-top: 1px solid var(--line-t); padding-top: 24px; }
+.why-list dt { font-weight: 700; font-size: 21px; line-height: 1.45; }
+.why-list dd { margin-top: 8px; font-size: 16px; line-height: 1.85; color: var(--on-teal); }
 
 /* ---------- Journey (dark band) ---------- */
 .journey { background: var(--ink); color: #fff; }
 .journey .wrap { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(40px, 6vw, 96px); align-items: center; }
-.journey .eyebrow { color: var(--teal-soft); }
 .journey img { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; border-radius: var(--r); }
 .journey figcaption { margin-top: 10px; font-size: 13px; color: var(--text-3); }
-.steps { margin-top: 36px; display: grid; gap: 0; counter-reset: s; }
-.steps li { position: relative; display: grid; grid-template-columns: 48px minmax(0, 1fr); gap: 2px 20px; padding-bottom: 30px; }
-.steps li::before { content: ""; position: absolute; inset-inline-start: 23px; top: 48px; bottom: 0; width: 1px; background: var(--line-d); }
+.steps { margin-top: 44px; display: grid; }
+.steps li { position: relative; display: grid; grid-template-columns: 52px minmax(0, 1fr); gap: 2px 22px; padding-bottom: 32px; }
+.steps li::before { content: ""; position: absolute; inset-inline-start: 25px; top: 52px; bottom: 0; width: 1px; background: var(--line-d); }
 .steps li:last-child { padding-bottom: 0; }
 .steps li:last-child::before { display: none; }
-.steps .n { width: 48px; height: 48px; border-radius: 50%; border: 1px solid var(--teal-soft); color: var(--teal-soft); display: grid; place-items: center; font-weight: 600; font-size: 18px; grid-row: span 2; }
-.steps h3 { font-weight: 600; font-size: 20px; line-height: 1.5; padding-top: 9px; }
+.steps .n { width: 52px; height: 52px; border-radius: 50%; border: 1px solid var(--teal-soft); color: var(--teal-soft); display: grid; place-items: center; font-weight: 600; font-size: 19px; grid-row: span 2; }
+.steps h3 { font-weight: 700; font-size: 22px; line-height: 1.5; padding-top: 10px; }
 .steps p { color: var(--text-3); font-size: 16px; }
-.disc { margin-top: 36px; padding: 18px 20px; border-radius: var(--r); background: var(--ink-2); border: 1px solid var(--line-d); font-size: 14.5px; color: var(--text-3); line-height: 1.85; }
+.disc { margin-top: 40px; padding: 18px 20px; border-radius: 12px; background: var(--ink-2); border: 1px solid var(--line-d); font-size: 14.5px; color: var(--text-3); line-height: 1.85; }
 
 /* ---------- Contact ---------- */
-.contact .wrap { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(40px, 6vw, 96px); align-items: start; }
-.contact .lead { margin-top: 18px; }
-.contact-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+.contact .wrap { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); gap: clamp(40px, 6vw, 96px); align-items: start; }
+.contact .h2 { font-size: clamp(40px, 5.6vw, 84px); line-height: 1.2; }
+.contact .lead { margin-top: 22px; }
+.contact-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 34px; }
 .contact .pend.btn-note { margin-top: 14px; }
-.card { background: #fff; border: 1px solid var(--line); border-radius: var(--r); padding: clamp(22px, 3vw, 36px); }
+.card { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: clamp(22px, 3vw, 36px); }
 .info div { display: grid; grid-template-columns: 9rem minmax(0, 1fr); gap: 4px 20px; padding-block: 18px; border-bottom: 1px solid var(--line); }
 .info div:first-child { padding-top: 0; }
 .info dt { font-size: 15px; color: var(--text-2); }
@@ -198,18 +216,18 @@ a { color: inherit; text-decoration: none; }
 .ftr-base { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px 24px; margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--line-d); font-size: 13px; }
 .ftr-base .credit { direction: ltr; letter-spacing: .03em; opacity: .75; }
 
-/* ---------- Reveal: visible at rest, motion only lifts ---------- */
-.rv { transition: transform 1s var(--ease); }
-.js .rv:not(.in) { transform: translateY(22px); }
-
 /* ---------- Responsive ---------- */
 @media (max-width: 1060px) {
   .nav { display: none; }
   .hdr .btn { margin-inline-start: auto; }
   .burger { display: inline-flex; margin-inline-start: 0; }
+  .why-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 900px) {
-  .about .wrap, .why .wrap, .journey .wrap, .contact .wrap, .sec-head { grid-template-columns: minmax(0, 1fr); }
+  .about .wrap, .journey .wrap, .contact .wrap, .sec-head, .svc, .svc:nth-child(even) { grid-template-columns: minmax(0, 1fr); }
+  .svc:nth-child(even) figure { order: 0; aspect-ratio: 4 / 3; }
+  .about-media { margin-inline-end: 0; order: -1; }
+  .about-media img { border-radius: var(--r); }
   .journey img { aspect-ratio: 16 / 11; }
   .facts ul { grid-template-columns: minmax(0, 1fr); }
   .facts li { padding-block: 14px; }
@@ -221,10 +239,10 @@ a { color: inherit; text-decoration: none; }
   .burger { margin-inline-start: auto; }
   .brand span { display: none; }
   .hero-img img { object-position: 30% 50%; }
-  .hero::before { background: linear-gradient(to top, rgba(15,26,28,.96) 0%, rgba(15,26,28,.8) 50%, rgba(15,26,28,.35) 80%, rgba(15,26,28,.5) 100%); }
-  .hero-copy { padding-top: 150px; }
+  .hero::before { background: linear-gradient(to top, rgba(15,26,28,.96) 0%, rgba(15,26,28,.82) 52%, rgba(15,26,28,.35) 80%, rgba(15,26,28,.5) 100%); }
+  .hero-copy { padding-top: 160px; padding-bottom: 48px; }
   .hero-cta .btn { flex: 1 1 100%; }
-  .svc-grid, .why-list { grid-template-columns: minmax(0, 1fr); }
+  .why-list { grid-template-columns: minmax(0, 1fr); gap: 28px; }
   .info div { grid-template-columns: minmax(0, 1fr); }
   .contact-cta .btn { flex: 1 1 100%; }
   .ftr-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
@@ -234,7 +252,6 @@ a { color: inherit; text-decoration: none; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
-  .js .rv:not(.in) { transform: none; }
 }
 </style>
 
@@ -274,9 +291,8 @@ a { color: inherit; text-decoration: none; }
   <section class="hero" id="top" aria-labelledby="h1">
     <div class="hero-img"><img src="img/hero.jpg" alt="أخصائي علاج طبيعي يفحص ركبة مريض على سرير العلاج (صورة توضيحية)" width="1536" height="864" fetchpriority="high"></div>
     <div class="wrap hero-copy">
-      <span class="eyebrow">العلاج الطبيعي والتأهيل · بيفرلي هيلز، الشيخ زايد</span>
-      <h1 id="h1">حركتك تستحق <em>رعاية متخصصة.</em></h1>
-      <p class="sub">عيادة علاج طبيعي للبالغين وإصابات الملاعب وبرامج التأهيل. بنبدأ دايمًا بالتقييم، ونشرح لك كل خطوة بوضوح قبل ما نبدأ العلاج.</p>
+      <h1 id="h1"><span class="ln"><span>حركتك تستحق</span></span><span class="ln"><span><em>رعاية متخصصة.</em></span></span></h1>
+      <p class="sub">عيادة علاج طبيعي في بيفرلي هيلز بالشيخ زايد، للبالغين وإصابات الملاعب وبرامج التأهيل. بنبدأ دايمًا بالتقييم، ونشرح لك كل خطوة قبل ما نبدأ العلاج.</p>
       <div class="hero-cta">
         <a class="btn btn-p" href="#contact">احجز موعدك <span class="arr" aria-hidden="true">←</span></a>
         <a class="btn btn-w" href="#services">اكتشف خدماتنا</a>
@@ -295,11 +311,10 @@ a { color: inherit; text-decoration: none; }
   <section class="sec about" id="about" aria-labelledby="about-h">
     <div class="wrap">
       <div>
-        <span class="eyebrow rv">عن الدكتور والعيادة</span>
-        <h2 class="h2 rv" id="about-h">مكان هادي، وعلاج مبني على تقييمك أنت.</h2>
-        <p class="lead rv">الهدف إنك تفهم حالتك كويس: إيه اللي بيحصل، إيه اللي هنشتغل عليه، وليه. كل خطة علاج بتتبني عليك، مش على قالب جاهز.</p>
-        <p class="more rv">بنستقبل البالغين اللي بيعانوا من آلام أو مشكلات حركية في العضلات والمفاصل، والرياضيين بعد الإصابات، والحالات اللي محتاجة برنامج تأهيل منظم بعد العمليات.</p>
-        <div class="doctor rv">
+        <h2 class="h2" id="about-h">مكان هادي، <span class="soft">وعلاج مبني على تقييمك أنت.</span></h2>
+        <p class="lead">الهدف إنك تفهم حالتك كويس: إيه اللي بيحصل، إيه اللي هنشتغل عليه، وليه. كل خطة علاج بتتبني عليك، مش على قالب جاهز.</p>
+        <p class="more">بنستقبل البالغين اللي بيعانوا من آلام أو مشكلات حركية في العضلات والمفاصل، والرياضيين بعد الإصابات، والحالات اللي محتاجة برنامج تأهيل منظم بعد العمليات.</p>
+        <div class="doctor">
           <span class="mono" aria-hidden="true">ب</span>
           <div>
             <h3>د. الباز</h3>
@@ -308,7 +323,7 @@ a { color: inherit; text-decoration: none; }
           </div>
         </div>
       </div>
-      <figure class="about-media rv">
+      <figure class="about-media">
         <img src="img/room.jpg" alt="غرفة علاج طبيعي هادئة بإضاءة طبيعية (صورة توضيحية)" width="1536" height="864" loading="lazy">
         <figcaption>جلسات فردية في مساحة هادية</figcaption>
       </figure>
@@ -319,72 +334,76 @@ a { color: inherit; text-decoration: none; }
   <section class="sec services" id="services" aria-labelledby="svc-h">
     <div class="wrap">
       <div class="sec-head">
-        <div>
-          <span class="eyebrow rv">خدماتنا</span>
-          <h2 class="h2 rv" id="svc-h">رعاية تبدأ من فهم حركتك.</h2>
-        </div>
-        <p class="lead rv">كل خدمة بتبدأ بتقييم في العيادة، وبعده بنتفق معاك على الخطة المناسبة لحالتك.</p>
+        <h2 class="h2" id="svc-h">رعاية تبدأ <span class="soft">من فهم حركتك.</span></h2>
+        <p class="lead">كل خدمة بتبدأ بتقييم في العيادة، وبعده بنتفق معاك على الخطة المناسبة لحالتك.</p>
       </div>
-      <div class="svc-grid">
-        <article class="svc rv">
-          <figure class="s1"><img src="img/neck.jpg" alt="أخصائية تفحص الرقبة والكتف لمريض جالس (صورة توضيحية)" width="1024" height="1280" loading="lazy"></figure>
-          <h3>علاج طبيعي للبالغين</h3>
-          <p>تقييم وعلاج الآلام والمشكلات الحركية في العضلات والمفاصل، بخطة جلسات وتمارين تتحدد بعد الفحص.</p>
-        </article>
-        <article class="svc rv">
+      <div class="svc-list">
+        <article class="svc">
           <figure class="s2"><img src="img/athlete.jpg" alt="لاعب يؤدي تمرين توازن بإشراف أخصائي (صورة توضيحية)" width="1024" height="1280" loading="lazy"></figure>
-          <h3>إصابات الملاعب</h3>
-          <p>للرياضيين والهواة: تقييم الإصابة، ثم برنامج تأهيل بيراعي طبيعة الرياضة اللي بتمارسها ومتطلباتها.</p>
+          <div>
+            <h3>إصابات الملاعب</h3>
+            <p>للرياضيين والهواة: تقييم الإصابة، ثم برنامج تأهيل بيراعي طبيعة الرياضة اللي بتمارسها ومتطلباتها.</p>
+            <a class="go" href="#contact">اطلب جلسة تقييم <span aria-hidden="true">←</span></a>
+          </div>
         </article>
-        <article class="svc rv">
+        <article class="svc">
+          <figure class="s1"><img src="img/neck.jpg" alt="أخصائية تفحص الرقبة والكتف لمريض جالس (صورة توضيحية)" width="1024" height="1280" loading="lazy"></figure>
+          <div>
+            <h3>علاج طبيعي للبالغين</h3>
+            <p>تقييم وعلاج الآلام والمشكلات الحركية في العضلات والمفاصل، بخطة جلسات وتمارين تتحدد بعد الفحص.</p>
+            <a class="go" href="#contact">اطلب جلسة تقييم <span aria-hidden="true">←</span></a>
+          </div>
+        </article>
+        <article class="svc">
           <figure class="s3"><img src="img/shoulder.jpg" alt="سيدة تؤدي تمرين تأهيل للكتف بمساعدة أخصائية (صورة توضيحية)" width="1024" height="1280" loading="lazy"></figure>
-          <h3>التأهيل الحركي</h3>
-          <p>برامج تمارين علاجية متدرجة للقوة والمرونة والتوازن، بتتعدل حسب تقدمك في كل مرحلة.</p>
+          <div>
+            <h3>التأهيل الحركي</h3>
+            <p>برامج تمارين علاجية متدرجة للقوة والمرونة والتوازن، بتتعدل حسب تقدمك في كل مرحلة.</p>
+            <a class="go" href="#contact">اطلب جلسة تقييم <span aria-hidden="true">←</span></a>
+          </div>
         </article>
-        <article class="svc rv">
+        <article class="svc">
           <figure class="s4"><img src="img/postop.jpg" alt="رجل بدعامة ركبة يؤدي تمرين مد الرجل بمساعدة أخصائية (صورة توضيحية)" width="960" height="1280" loading="lazy"></figure>
-          <h3>التأهيل بعد العمليات</h3>
-          <p>متابعة مرحلة ما بعد الجراحة بالتنسيق مع تعليمات الطبيب الجراح، خطوة بخطوة وبإيقاع آمن.</p>
+          <div>
+            <h3>التأهيل بعد العمليات</h3>
+            <p>متابعة مرحلة ما بعد الجراحة بالتنسيق مع تعليمات الطبيب الجراح، خطوة بخطوة وبإيقاع آمن.</p>
+            <a class="go" href="#contact">اطلب جلسة تقييم <span aria-hidden="true">←</span></a>
+          </div>
         </article>
       </div>
-      <p class="svc-note rv">مش متأكد الخدمة المناسبة لحالتك؟ تواصل مع العيادة، والتقييم هو اللي بيحدد الخطة.</p>
+      <p class="svc-note">مش متأكد الخدمة المناسبة لحالتك؟ تواصل مع العيادة، والتقييم هو اللي بيحدد الخطة.</p>
     </div>
   </section>
 
   <!-- WHY -->
   <section class="sec why" id="why" aria-labelledby="why-h">
     <div class="wrap">
-      <div>
-        <span class="eyebrow rv">لماذا نحن</span>
-        <h2 class="h2 rv" id="why-h">رعاية هادية، واضحة، ومحترمة لوقتك.</h2>
-        <p class="lead rv">مفيش خطة جاهزة. كل علاج بيبدأ بفهم حالتك أنت.</p>
-      </div>
-      <ul class="why-list">
-        <li class="rv"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><h3>التقييم قبل العلاج</h3><p>كل حالة بتبدأ بفحص وتقييم، والعلاج بيتحدد على أساسه.</p></li>
-        <li class="rv"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h14v16H5z"/><path d="M9 9h6M9 13h6M9 17h3"/></svg><h3>خطة تفهمها</h3><p>هنشرح لك إيه اللي بنعمله وليه، بلغة بسيطة ومن غير تعقيد.</p></li>
-        <li class="rv"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><h3>خصوصية وراحة</h3><p>معلوماتك الصحية بتتعامل بسرية واحترام.</p></li>
-        <li class="rv"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></svg><h3>حجز من غير تعب</h3><p>تواصل معانا بالتليفون أو واتساب، والعيادة هترتب معاك الميعاد المناسب.</p></li>
-      </ul>
+      <h2 class="big" id="why-h">مفيش خطة جاهزة. <span class="soft">كل علاج بيبدأ بتقييمك أنت.</span></h2>
+      <dl class="why-list">
+        <div><dt>التقييم قبل العلاج</dt><dd>كل حالة بتبدأ بفحص وتقييم، والعلاج بيتحدد على أساسه.</dd></div>
+        <div><dt>خطة تفهمها</dt><dd>هنشرح لك إيه اللي بنعمله وليه، بلغة بسيطة ومن غير تعقيد.</dd></div>
+        <div><dt>خصوصية وراحة</dt><dd>معلوماتك الصحية بتتعامل بسرية واحترام.</dd></div>
+        <div><dt>حجز من غير تعب</dt><dd>تواصل معانا بالتليفون أو واتساب، والعيادة هترتب معاك الميعاد المناسب.</dd></div>
+      </dl>
     </div>
   </section>
 
   <!-- JOURNEY -->
   <section class="sec journey" aria-labelledby="j-h">
     <div class="wrap">
-      <figure class="rv">
+      <figure>
         <img src="img/consult.jpg" alt="أخصائية تشرح خطة العلاج لمريض باستخدام نموذج للركبة (صورة توضيحية)" width="1024" height="1280" loading="lazy">
         <figcaption>صورة توضيحية</figcaption>
       </figure>
       <div>
-        <span class="eyebrow rv">رحلتك معنا</span>
-        <h2 class="h2 rv" id="j-h">من أول رسالة لحد خطة العلاج.</h2>
+        <h2 class="h2" id="j-h">من أول رسالة <span class="soft">لحد خطة العلاج.</span></h2>
         <ol class="steps">
-          <li class="rv"><span class="n" aria-hidden="true">١</span><h3>تواصل مع العيادة</h3><p>كلّمنا أو ابعت رسالة واتساب باستفسارك.</p></li>
-          <li class="rv"><span class="n" aria-hidden="true">٢</span><h3>اطلب موعدًا</h3><p>هنتفق معاك على ميعاد مناسب ونأكده معاك مباشرة.</p></li>
-          <li class="rv"><span class="n" aria-hidden="true">٣</span><h3>احضر جلسة التقييم</h3><p>فحص وتقييم متخصص لحالتك في العيادة.</p></li>
-          <li class="rv"><span class="n" aria-hidden="true">٤</span><h3>ناقش خطة العلاج</h3><p>نشرح لك الخطة المقترحة ونجاوب على كل أسئلتك.</p></li>
+          <li><span class="n" aria-hidden="true">١</span><h3>تواصل مع العيادة</h3><p>كلّمنا أو ابعت رسالة واتساب باستفسارك.</p></li>
+          <li><span class="n" aria-hidden="true">٢</span><h3>اطلب موعدًا</h3><p>هنتفق معاك على ميعاد مناسب ونأكده معاك مباشرة.</p></li>
+          <li><span class="n" aria-hidden="true">٣</span><h3>احضر جلسة التقييم</h3><p>فحص وتقييم متخصص لحالتك في العيادة.</p></li>
+          <li><span class="n" aria-hidden="true">٤</span><h3>ناقش خطة العلاج</h3><p>نشرح لك الخطة المقترحة ونجاوب على كل أسئلتك.</p></li>
         </ol>
-        <p class="disc rv">أي توصية علاجية بتتحدد فقط بعد التقييم المتخصص في العيادة. المعلومات على الموقع للتعريف، وليست بديلًا عن الاستشارة.</p>
+        <p class="disc">أي توصية علاجية بتتحدد فقط بعد التقييم المتخصص في العيادة. المعلومات على الموقع للتعريف، وليست بديلًا عن الاستشارة.</p>
       </div>
     </div>
   </section>
@@ -393,16 +412,15 @@ a { color: inherit; text-decoration: none; }
   <section class="sec contact" id="contact" aria-labelledby="c-h">
     <div class="wrap">
       <div>
-        <span class="eyebrow rv">تواصل معنا</span>
-        <h2 class="h2 rv" id="c-h">خلّينا نرتب ميعادك.</h2>
-        <p class="lead rv">ابعت لنا على واتساب أو اتصل بالعيادة، وهنرد عليك لتأكيد الميعاد.</p>
-        <div class="contact-cta rv">
+        <h2 class="h2" id="c-h">خلّينا نرتب <span class="soft">ميعادك.</span></h2>
+        <p class="lead">ابعت لنا على واتساب أو اتصل بالعيادة، وهنرد عليك لتأكيد الميعاد.</p>
+        <div class="contact-cta">
           <span class="btn btn-p" aria-disabled="true">راسلنا على واتساب</span>
           <span class="btn btn-l" aria-disabled="true">اتصل بالعيادة</span>
         </div>
         <p class="pend btn-note">الأزرار بتشتغل بمجرد إضافة رقم العيادة المعتمد.</p>
       </div>
-      <div class="card rv">
+      <div class="card">
         <dl class="info">
           <div><dt>العنوان</dt><dd><b>بيفرلي هيلز، الشيخ زايد، الجيزة</b><span class="pend">العنوان التفصيلي يُضاف بعد تأكيد العيادة</span></dd></div>
           <div><dt>الهاتف / واتساب</dt><dd><span class="pend">يُضاف بعد تأكيد العيادة</span></dd></div>
@@ -444,7 +462,6 @@ a { color: inherit; text-decoration: none; }
 
 <script>
 (function () {
-  document.documentElement.classList.add('js');
   var hdr = document.getElementById('hdr');
   var burger = document.getElementById('burger');
   var drawer = document.getElementById('drawer');
@@ -464,15 +481,5 @@ a { color: inherit; text-decoration: none; }
   burger.addEventListener('click', function () { setMenu(drawer.hidden); });
   drawer.addEventListener('click', function (e) { if (e.target.closest('a')) setMenu(false); });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !drawer.hidden) { setMenu(false); burger.focus(); } });
-
-  var els = document.querySelectorAll('.rv');
-  if (!('IntersectionObserver' in window)) { els.forEach(function (el) { el.classList.add('in'); }); return; }
-  var io = new IntersectionObserver(function (entries) {
-    entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
-  }, { rootMargin: '0px 0px -6% 0px', threshold: 0.08 });
-  els.forEach(function (el) {
-    var r = el.getBoundingClientRect();
-    if (r.top < window.innerHeight) el.classList.add('in'); else io.observe(el);
-  });
 })();
 </script>
