@@ -31,7 +31,7 @@ Assessment before any treatment, and a plan explained in plain language. The cli
 
 ## Capabilities and Constraints
 
-- **Language:** Arabic first, fully RTL, in natural Egyptian-friendly Arabic. English is not built and may come later.
+- **Language:** Arabic first, fully RTL, in natural Egyptian-friendly Arabic. An English version (LTR) is available through a language toggle in the header. The choice is remembered per visitor, and both languages carry the same facts.
 - **Services:** take these from public directory listings, unconfirmed by the clinic:
   - adult physiotherapy;
   - sports injuries;
