@@ -26,6 +26,8 @@ Assessment before any treatment, and a plan explained in plain language. The cli
 ## Operating Context
 
 - Delivered as a private claude.ai artifact: https://claude.ai/artifact/KU8LdwVrngppz71deyoaLv. The source is `elbaz-concept/index.html` and the images are in `elbaz-concept/img/`.
+- **Production:** https://mahmoud-clinic-website.vercel.app, from the Vercel project `mahmoud-clinic-website` and the Git branch `mahmoud-clinic`. Vercel builds from `elbaz-concept/` with `node build.mjs`, outputs to `dist/`, and runs Node 22. There are no dependencies or environment variables. The project skips builds from every branch except `mahmoud-clinic`. It is fully independent of the LeadSync project (`claude-code-841z`, which serves `useleadsync.com` from `main`).
+- **Hosting plan:** Vercel Hobby, used as a pre-sale preview. Upgrade to Pro before the clinic uses the site commercially.
 - Appointment requests go through the clinic directly by phone or WhatsApp. There is no online booking system, and the site must not imply that appointments are confirmed automatically.
 - Future LeadSync work could add appointment-request handling, WhatsApp enquiry automation, reminders and an enquiry dashboard. Any AI receptionist stays administrative: no diagnosis and no treatment recommendations. Patient information needs privacy and security protection.
 
